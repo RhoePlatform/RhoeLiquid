@@ -1,0 +1,30 @@
+name: Release Candidate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-candidate:
+    name: Build Release Candidate Evidence
+    runs-on: macos-26
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify Release Readiness
+        run: bash Scripts/CI/verify-release-readiness.sh
+
+      - name: Build CLI Product
+        run: swift build -c release --product liquid
+
+      - name: Build Service Product
+        run: swift build -c release --product RhoeLiquidService
+
+      - name: Upload DocC Pages Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rhoeliquid-docc-pages
+          path: .build/docc-pages

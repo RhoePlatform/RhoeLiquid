@@ -1,0 +1,26 @@
+{
+  "version": "v1rc1",
+  "trustedSubsetVersion": "trusted-docx-v1",
+  "fixtures": [
+    {
+      "id": "structured-parts",
+      "fixture": "structured-parts.fixture.json",
+      "analysis": "structured-parts.analysis.json",
+      "preservedEntries": [
+        "word/_rels/document.xml.rels",
+        "word/media/image1.png",
+        "word/numbering.xml",
+        "word/styles.xml"
+      ]
+    },
+    {
+      "id": "unsupported-construct",
+      "fixture": "unsupported-construct.fixture.json",
+      "analysis": "unsupported-construct.analysis.json",
+      "preservedEntries": [
+        "customXml/item1.xml",
+        "word/comments.xml"
+      ]
+    }
+  ]
+}

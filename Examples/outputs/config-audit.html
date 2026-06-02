@@ -1,0 +1,134 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Local Compute Kernel Audit configuration audit</title>
+  <style>
+    body { margin: 0; background: #f7f9f4; color: #18221a; font-family: ui-sans-serif, system-ui, sans-serif; }
+    main { max-width: 1080px; margin: 0 auto; padding: 44px 22px; }
+    h1 { font-size: clamp(42px, 7vw, 82px); letter-spacing: -.06em; margin-bottom: 8px; }
+    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0; }
+    .tile, .service { border: 1px solid #d9e1d3; border-radius: 22px; background: white; padding: 20px; box-shadow: 0 12px 34px rgba(24, 34, 26, .06); }
+    .tile strong { display: block; font-size: 34px; }
+    .service { margin: 14px 0; }
+    .service h2 { display: flex; justify-content: space-between; gap: 12px; margin: 0; }
+    .risk-low { color: #16744a; }
+    .risk-medium { color: #a96700; }
+    .risk-high { color: #b42318; }
+    code { background: #eef3ea; padding: 3px 6px; border-radius: 6px; }
+    @media (max-width: 780px) { .summary { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p>2026-06-01</p>
+    <h1>Local Compute Kernel Audit</h1>
+    <p>A fictional operations dashboard rendered from nested JSON service metadata.</p>
+
+    <section class="summary">
+      
+      <div class="tile">
+        <strong>6.0</strong>
+        <span>checks</span>
+      </div>
+      
+      <div class="tile">
+        <strong>4.0</strong>
+        <span>passed</span>
+      </div>
+      
+      <div class="tile">
+        <strong>2.0</strong>
+        <span>review items</span>
+      </div>
+      
+      <div class="tile">
+        <strong>3.0</strong>
+        <span>managed services</span>
+      </div>
+      
+    </section>
+
+    
+    <article class="service">
+      <h2>
+        <span>Python Kernel</span>
+        <span class="risk-low">Low risk</span>
+      </h2>
+      <p>Sandboxed authoring kernel for notebook-style computation.</p>
+      <h3>Checks</h3>
+      <ul>
+        
+        <li>
+          <code>venv.present</code>
+          
+          passed
+          
+        </li>
+        
+        <li>
+          <code>packages.pinned</code>
+          
+          passed
+          
+        </li>
+        
+      </ul>
+    </article>
+    
+    <article class="service">
+      <h2>
+        <span>Rust Kernel</span>
+        <span class="risk-medium">Medium risk</span>
+      </h2>
+      <p>Host-local cargo environment for compiled compute extensions.</p>
+      <h3>Checks</h3>
+      <ul>
+        
+        <li>
+          <code>toolchain.locked</code>
+          
+          passed
+          
+        </li>
+        
+        <li>
+          <code>cache.pruned</code>
+          
+          needs attention: Last cleanup was 19 days ago.
+          
+        </li>
+        
+      </ul>
+    </article>
+    
+    <article class="service">
+      <h2>
+        <span>Container Runtime</span>
+        <span class="risk-high">High risk</span>
+      </h2>
+      <p>Local image runner for standardized Linux compute images.</p>
+      <h3>Checks</h3>
+      <ul>
+        
+        <li>
+          <code>catalog.signature</code>
+          
+          passed
+          
+        </li>
+        
+        <li>
+          <code>image.updates</code>
+          
+          needs attention: Two images have newer secure baselines.
+          
+        </li>
+        
+      </ul>
+    </article>
+    
+  </main>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RhoeLiquid Native Service API Documentation</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f7fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        
+        .header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .header-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        
+        .header-links a:hover {
+            opacity: 1;
+        }
+        
+        .info-banner {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            border-radius: 4px;
+        }
+        
+        .info-banner h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1976d2;
+        }
+        
+        .info-banner p {
+            margin: 0;
+            color: #424242;
+        }
+        
+        #swagger-ui {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .swagger-ui .topbar {
+            display: none;
+        }
+        
+        .swagger-ui .info {
+            margin: 2rem 0;
+        }
+        
+        .swagger-ui .scheme-container {
+            background: #f5f7fa;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        
+        /* Custom theme colors */
+        .swagger-ui .btn.authorize {
+            background: #667eea;
+            border-color: #667eea;
+        }
+        
+        .swagger-ui .btn.authorize:hover {
+            background: #5a67d8;
+            border-color: #5a67d8;
+        }
+        
+        .swagger-ui .opblock.opblock-post .opblock-summary {
+            border-color: #49cc90;
+        }
+        
+        .swagger-ui .opblock.opblock-post .opblock-summary-method {
+            background: #49cc90;
+        }
+        
+        .swagger-ui .opblock.opblock-get .opblock-summary {
+            border-color: #61affe;
+        }
+        
+        .swagger-ui .opblock.opblock-get .opblock-summary-method {
+            background: #61affe;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: #616161;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 4rem 0;
+            color: #666;
+        }
+        
+        .loading::after {
+            content: "...";
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% {
+                content: ".";
+            }
+            40% {
+                content: "..";
+            }
+            60%, 100% {
+                content: "...";
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-links {
+                margin-top: 1rem;
+            }
+            
+            .info-banner {
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1>RhoeLiquid Native Service API</h1>
+                <p>High-performance Liquid template processing for macOS</p>
+            </div>
+            <div class="header-links">
+                <a href="https://github.com/RhoePlatform/RhoeLiquid" target="_blank">GitHub</a>
+                <a href="openapi.yaml" download>Download OpenAPI</a>
+                <a href="#" onclick="downloadPostmanCollection()">Postman Collection</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="info-banner">
+        <h3>Quick Start</h3>
+        <p>The service runs locally on port 13480. Start <code>RhoeLiquidService</code>, then try:</p>
+        <code style="display: block; margin-top: 0.5rem; padding: 0.5rem; background: #f5f5f5; border-radius: 4px;">
+            curl -X POST http://localhost:13480/render -H "Content-Type: application/json" -d '{"template":"Hello {{ name }}!","context":{"name":"World"}}'
+        </code>
+    </div>
+    
+    <div id="swagger-ui">
+        <div class="loading">Loading API documentation</div>
+    </div>
+    
+    <footer class="footer">
+        <p>
+            RhoeLiquid Native Service v0.1.0 | 
+            <a href="https://github.com/RhoePlatform/RhoeLiquid/blob/main/LICENSE">Apache 2.0 License</a> | 
+            <a href="https://github.com/RhoePlatform/RhoeLiquid/issues">Report an Issue</a>
+        </p>
+    </footer>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            // Initialize Swagger UI
+            window.ui = SwaggerUIBundle({
+                url: "openapi.yaml",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                validatorUrl: null,
+                tryItOutEnabled: true,
+                supportedSubmitMethods: ['get', 'post'],
+                onComplete: function() {
+                    // Remove loading message
+                    document.querySelector('.loading').style.display = 'none';
+                },
+                requestInterceptor: function(request) {
+                    // Add timestamp to prevent caching during development
+                    if (request.url.includes('localhost')) {
+                        request.headers['X-Request-Time'] = new Date().toISOString();
+                    }
+                    return request;
+                },
+                responseInterceptor: function(response) {
+                    // Log responses for debugging
+                    console.log('API Response:', response);
+                    return response;
+                }
+            });
+        };
+        
+        // Download Postman collection
+        function downloadPostmanCollection() {
+            // Convert OpenAPI to Postman collection format
+            fetch('openapi.yaml')
+                .then(response => response.text())
+                .then(openApiYaml => {
+                    // This would normally use a converter library
+                    // For now, we'll create a basic collection
+                    const collection = {
+                        info: {
+                            name: "RhoeLiquid Native Service API",
+                            description: "High-performance Liquid template processing for macOS",
+                            schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+                        },
+                        item: [
+                            {
+                                name: "Health Check",
+                                request: {
+                                    method: "GET",
+                                    header: [],
+                                    url: {
+                                        raw: "http://localhost:13480/health",
+                                        protocol: "http",
+                                        host: ["localhost"],
+                                        port: "13480",
+                                        path: ["health"]
+                                    }
+                                }
+                            },
+                            {
+                                name: "Render Template",
+                                request: {
+                                    method: "POST",
+                                    header: [
+                                        {
+                                            key: "Content-Type",
+                                            value: "application/json"
+                                        }
+                                    ],
+                                    body: {
+                                        mode: "raw",
+                                        raw: JSON.stringify({
+                                            template: "Hello {{ name }}!",
+                                            context: { name: "World" }
+                                        }, null, 2)
+                                    },
+                                    url: {
+                                        raw: "http://localhost:13480/render",
+                                        protocol: "http",
+                                        host: ["localhost"],
+                                        port: "13480",
+                                        path: ["render"]
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    
+                    // Download the collection
+                    const blob = new Blob([JSON.stringify(collection, null, 2)], { type: 'application/json' });
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'RhoeLiquid-Native-Service.postman_collection.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                })
+                .catch(error => {
+                    console.error('Error generating Postman collection:', error);
+                    alert('Failed to generate Postman collection. Please try again.');
+                });
+        }
+    </script>
+</body>
+</html>

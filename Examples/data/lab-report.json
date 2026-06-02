@@ -1,0 +1,28 @@
+{
+  "report": {
+    "title": "RhoeLiquid Rendering Lab Report",
+    "author": "Example Systems Group",
+    "date": "2026-06-01",
+    "purpose": "Demonstrate that the same Liquid template engine can emit LaTeX artifacts from structured JSON data."
+  },
+  "protocol": [
+    "Define a small measurement context as JSON.",
+    "Render a LaTeX template through the `liquid` CLI.",
+    "Compile the generated `.tex` file with a LaTeX toolchain if desired."
+  ],
+  "samples": [
+    { "name": "alpha", "baseline": 12.4, "observed": 13.1, "delta": 0.7 },
+    { "name": "beta", "baseline": 8.8, "observed": 8.4, "delta": -0.4 },
+    { "name": "gamma", "baseline": 21.0, "observed": 23.5, "delta": 2.5 }
+  ],
+  "interpretation": [
+    {
+      "label": "Signal",
+      "text": "All samples rendered through the same template without document-type-specific code."
+    },
+    {
+      "label": "Next step",
+      "text": "Use a dedicated escaping policy before rendering untrusted content into LaTeX."
+    }
+  ]
+}

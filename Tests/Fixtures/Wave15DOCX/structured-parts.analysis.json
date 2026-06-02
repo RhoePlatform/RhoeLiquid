@@ -1,0 +1,115 @@
+{
+  "coverageSummary": {
+    "preservesUnsupportedParts": true,
+    "structuredSupportedParts": [
+      "word/document.xml",
+      "word/header*.xml",
+      "word/footer*.xml",
+      "word/comments.xml",
+      "word/footnotes.xml",
+      "word/endnotes.xml"
+    ],
+    "supportedPartCount": 6,
+    "trustedSubsetVersion": "trusted-docx-v1",
+    "unsupportedConstructBehavior": "Unsupported or untrusted package parts are preserved byte-for-byte and reported in diagnostics.",
+    "unsupportedPartCount": 6
+  },
+  "partDiagnostics": [
+    {
+      "path": "word/comments.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "reviewer",
+        "reviewer.name"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    },
+    {
+      "path": "word/document.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "invoice",
+        "invoice.row_one",
+        "invoice.row_two",
+        "invoice.title"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    },
+    {
+      "path": "word/endnotes.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "endnote_value"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    },
+    {
+      "path": "word/footer1.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "page_label"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    },
+    {
+      "path": "word/footnotes.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "note_value"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    },
+    {
+      "path": "word/header1.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "company",
+        "company.name"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    }
+  ],
+  "referencedTemplates": [],
+  "referencedVariables": [
+    "company",
+    "company.name",
+    "endnote_value",
+    "invoice",
+    "invoice.row_one",
+    "invoice.row_two",
+    "invoice.title",
+    "note_value",
+    "page_label",
+    "reviewer",
+    "reviewer.name"
+  ],
+  "supportedParts": [
+    "word/comments.xml",
+    "word/document.xml",
+    "word/endnotes.xml",
+    "word/footer1.xml",
+    "word/footnotes.xml",
+    "word/header1.xml"
+  ],
+  "unsupportedParts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "word/_rels/document.xml.rels",
+    "word/media/image1.png",
+    "word/numbering.xml",
+    "word/styles.xml"
+  ],
+  "warnings": []
+}

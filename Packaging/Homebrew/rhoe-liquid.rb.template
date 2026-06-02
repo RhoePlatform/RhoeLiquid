@@ -1,0 +1,43 @@
+class RhoeLiquid < Formula
+  desc "RhoePlatform Liquid template engine CLI"
+  homepage "https://github.com/RhoePlatform/RhoeLiquid"
+  url "https://github.com/RhoePlatform/RhoeLiquid/archive/refs/tags/v__VERSION__.tar.gz"
+  sha256 "__SOURCE_SHA256__"
+  license "Apache-2.0"
+  head "https://github.com/RhoePlatform/RhoeLiquid.git", branch: "main"
+
+  on_macos do
+    depends_on xcode: ["26.0", :build]
+  end
+
+  on_linux do
+    depends_on "swift" => :build
+  end
+
+  def install
+    system "swift", "build", "-c", "release", "--product", "liquid", "--disable-sandbox"
+    bin.install ".build/release/liquid"
+
+    if File.exist?("Documentation/CLI/man/liquid.1")
+      man1.install "Documentation/CLI/man/liquid.1"
+    end
+    if File.exist?("Documentation/CLI/completions/liquid.bash")
+      bash_completion.install "Documentation/CLI/completions/liquid.bash" => "liquid"
+    end
+    if File.exist?("Documentation/CLI/completions/liquid.zsh")
+      zsh_completion.install "Documentation/CLI/completions/liquid.zsh" => "_liquid"
+    end
+    if File.exist?("Documentation/CLI/completions/liquid.fish")
+      fish_completion.install "Documentation/CLI/completions/liquid.fish"
+    end
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/liquid --version")
+
+    (testpath/"context.json").write('{"name":"rhoe"}')
+    (testpath/"template.liquid").write("Hello {{ name | upcase }}")
+    system bin/"liquid", "render", "template.liquid", "--context", "context.json", "--output", "out.txt"
+    assert_equal "Hello RHOE", (testpath/"out.txt").read
+  end
+end

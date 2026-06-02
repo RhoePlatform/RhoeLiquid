@@ -1,0 +1,82 @@
+{
+  "name": "structured-parts",
+  "description": "Trusted structured DOCX subset with document, headers, footers, comments, footnotes, endnotes, and preserved non-rendered package parts.",
+  "context": {
+    "invoice": {
+      "title": "Quarterly Update",
+      "row_one": "North Region",
+      "row_two": "South Region"
+    },
+    "company": {
+      "name": "RhoePlatform"
+    },
+    "page_label": "Confidential",
+    "reviewer": {
+      "name": "Avery"
+    },
+    "note_value": "Footnote Value",
+    "endnote_value": "Endnote Value"
+  },
+  "entries": [
+    {
+      "path": "[Content_Types].xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">\n  <Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>\n  <Default Extension=\"xml\" ContentType=\"application/xml\"/>\n  <Default Extension=\"png\" ContentType=\"image/png\"/>\n  <Override PartName=\"/word/document.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml\"/>\n  <Override PartName=\"/word/header1.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml\"/>\n  <Override PartName=\"/word/footer1.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml\"/>\n  <Override PartName=\"/word/comments.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml\"/>\n  <Override PartName=\"/word/footnotes.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml\"/>\n  <Override PartName=\"/word/endnotes.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml\"/>\n  <Override PartName=\"/word/styles.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml\"/>\n  <Override PartName=\"/word/numbering.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml\"/>\n</Types>"
+    },
+    {
+      "path": "_rels/.rels",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">\n  <Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"word/document.xml\"/>\n</Relationships>"
+    },
+    {
+      "path": "word/document.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\">\n  <w:body>\n    <w:p>\n      <w:r><w:t>Report {{ invoice.title }}</w:t></w:r>\n    </w:p>\n    <w:tbl>\n      <w:tr>\n        <w:tc><w:p><w:r><w:t>{{ invoice.row_one }}</w:t></w:r></w:p></w:tc>\n        <w:tc><w:p><w:r><w:t>{{ invoice.row_two }}</w:t></w:r></w:p></w:tc>\n      </w:tr>\n    </w:tbl>\n  </w:body>\n</w:document>"
+    },
+    {
+      "path": "word/header1.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:p><w:r><w:t>{{ company.name }}</w:t></w:r></w:p>\n</w:hdr>"
+    },
+    {
+      "path": "word/footer1.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:p><w:r><w:t>{{ page_label }}</w:t></w:r></w:p>\n</w:ftr>"
+    },
+    {
+      "path": "word/comments.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:comment w:id=\"0\" w:author=\"RhoePlatform\">\n    <w:p><w:r><w:t>Review {{ reviewer.name }}</w:t></w:r></w:p>\n  </w:comment>\n</w:comments>"
+    },
+    {
+      "path": "word/footnotes.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:footnote w:id=\"1\">\n    <w:p><w:r><w:t>Footnote {{ note_value }}</w:t></w:r></w:p>\n  </w:footnote>\n</w:footnotes>"
+    },
+    {
+      "path": "word/endnotes.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:endnote w:id=\"1\">\n    <w:p><w:r><w:t>Endnote {{ endnote_value }}</w:t></w:r></w:p>\n  </w:endnote>\n</w:endnotes>"
+    },
+    {
+      "path": "word/styles.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:style w:type=\"paragraph\" w:default=\"1\" w:styleId=\"Normal\"/>\n</w:styles>"
+    },
+    {
+      "path": "word/numbering.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:numbering xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:abstractNum w:abstractNumId=\"0\"/>\n</w:numbering>"
+    },
+    {
+      "path": "word/_rels/document.xml.rels",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">\n  <Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/header\" Target=\"header1.xml\"/>\n  <Relationship Id=\"rId2\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer\" Target=\"footer1.xml\"/>\n  <Relationship Id=\"rId3\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/image1.png\"/>\n</Relationships>"
+    },
+    {
+      "path": "word/media/image1.png",
+      "encoding": "base64",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO6X2q0AAAAASUVORK5CYII="
+    }
+  ]
+}

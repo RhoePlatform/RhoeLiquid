@@ -1,0 +1,97 @@
+{% comment %}
+Run:
+swift run liquid render Examples/templates/product-launch.html.liquid --context Examples/data/product-launch.json --output Examples/outputs/product-launch.html
+{% endcomment %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ product.name | escape }} launch page</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17211c;
+      --muted: #66736c;
+      --paper: #f8f3e7;
+      --accent: #ff6b35;
+      --accent-2: #0e7c7b;
+      --card: #fffdf7;
+      --line: #ded4c3;
+    }
+    body {
+      margin: 0;
+      font-family: ui-serif, Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 53, 0.16), transparent 32rem),
+        linear-gradient(135deg, #f8f3e7, #f0eadc);
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 56px 24px 72px; }
+    .eyebrow { color: var(--accent-2); font: 700 13px/1.2 ui-sans-serif, system-ui; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 16px 0; font-size: clamp(44px, 8vw, 92px); line-height: .88; letter-spacing: -0.06em; }
+    .lead { max-width: 720px; color: var(--muted); font: 22px/1.45 ui-sans-serif, system-ui; }
+    .hero { display: grid; grid-template-columns: 1.3fr .7fr; gap: 28px; align-items: end; }
+    .panel, .metric, .quote, .feature { background: var(--card); border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(55, 44, 24, .08); border-radius: 28px; }
+    .panel { padding: 28px; }
+    .cta { display: inline-flex; margin-top: 18px; padding: 14px 18px; border-radius: 999px; background: var(--accent); color: #fff; text-decoration: none; font: 800 14px/1 ui-sans-serif, system-ui; }
+    .metrics, .features, .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .metric, .feature, .quote { padding: 22px; }
+    .metric strong { display: block; font-size: 36px; letter-spacing: -.04em; }
+    .metric span, .feature p, .quote p { color: var(--muted); }
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(14, 124, 123, .1); color: var(--accent-2); font: 700 12px/1 ui-sans-serif, system-ui; }
+    @media (max-width: 760px) {
+      .hero, .metrics, .features, .quotes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">{{ product.category | upcase }} / {{ launch.season | escape }}</div>
+        <h1>{{ product.tagline | escape }}</h1>
+        <p class="lead">{{ product.summary | escape }}</p>
+        {% if launch.is_public %}
+        <a class="cta" href="{{ launch.url | escape }}">{{ launch.cta | escape }}</a>
+        {% else %}
+        <span class="badge">Private preview</span>
+        {% endif %}
+      </div>
+      <aside class="panel">
+        <span class="badge">{{ launch.status | escape }}</span>
+        <h2>{{ product.name | escape }}</h2>
+        <p>{{ product.positioning | escape }}</p>
+      </aside>
+    </section>
+
+    <section class="metrics" aria-label="Launch metrics">
+      {% for metric in metrics %}
+      <div class="metric">
+        <strong>{{ metric.value | escape }}</strong>
+        <span>{{ metric.label | escape }}</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    <section class="features" aria-label="Product features">
+      {% for feature in features %}
+      <article class="feature">
+        <span class="badge">{{ feature.area | escape }}</span>
+        <h3>{{ feature.title | escape }}</h3>
+        <p>{{ feature.description | escape }}</p>
+      </article>
+      {% endfor %}
+    </section>
+
+    <section class="quotes" aria-label="Customer quotes">
+      {% for quote in testimonials %}
+      <figure class="quote">
+        <p>"{{ quote.text | escape }}"</p>
+        <figcaption>- {{ quote.name | escape }}, {{ quote.role | escape }}</figcaption>
+      </figure>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>

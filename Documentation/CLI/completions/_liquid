@@ -1,0 +1,177 @@
+#compdef liquid
+
+__liquid_complete() {
+    local -ar non_empty_completions=("${@:#(|:*)}")
+    local -ar empty_completions=("${(M)@:#(|:*)}")
+    _describe -V '' non_empty_completions -- empty_completions -P $'\'\''
+}
+
+__liquid_custom_complete() {
+    local -a completions
+    completions=("${(@f)"$("${command_name}" "${@}" "${command_line[@]}")"}")
+    if [[ "${#completions[@]}" -gt 1 ]]; then
+        __liquid_complete "${completions[@]:0:-1}"
+    fi
+}
+
+__liquid_cursor_index_in_current_word() {
+    if [[ -z "${QIPREFIX}${IPREFIX}${PREFIX}" ]]; then
+        printf 0
+    else
+        printf %s "${#${(z)LBUFFER}[-1]}"
+    fi
+}
+
+_liquid() {
+    emulate -RL zsh -G
+    setopt extendedglob nullglob numericglobsort
+    unsetopt aliases banghist
+
+    local -xr SAP_SHELL=zsh
+    local -x SAP_SHELL_VERSION
+    SAP_SHELL_VERSION="$(builtin emulate zsh -c 'printf %s "${ZSH_VERSION}"')"
+    local -r SAP_SHELL_VERSION
+
+    local context state state_descr line
+    local -A opt_args
+
+    local -r command_name="${words[1]}"
+    local -ar command_line=("${words[@]}")
+    local -ir current_word_index="$((CURRENT - 1))"
+
+    local -i ret=1
+    local -ar arg_specs=(
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+        '(-): :->command'
+        '(-)*:: :->arg'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+    case "${state}" in
+    command)
+        local -ar subcommands=(
+            'render:Render a Liquid template.'
+            'analyze:Analyze template structure and complexity.'
+            'batch:Batch-render multiple templates.'
+            'validate:Validate Liquid template syntax.'
+            'benchmark:Benchmark template rendering performance.'
+            'init:Initialize a new Liquid template project.'
+            'help:Show subcommand help information.'
+        )
+        _describe -V subcommand subcommands && ret=0
+        ;;
+    arg)
+        case "${words[1]}" in
+        render|analyze|batch|validate|benchmark|init|help)
+            "_liquid_${words[1]}" && ret=0
+            ;;
+        esac
+        ;;
+    esac
+
+    return "${ret}"
+}
+
+_liquid_render() {
+    local -i ret=1
+    local -ar arg_specs=(
+        ':template:_files -g '\''*.liquid *.html'\'''
+        '--context[Context data file containing a JSON object.]:context:_files -g '\''*.json'\'''
+        '(--output -o)'{--output,-o}'[Output file path. Defaults to stdout.]:output:_files'
+        '--metrics[Show render timing and byte-size metrics.]'
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+_liquid_analyze() {
+    local -i ret=1
+    local -ar ___format=('terminal' 'json' 'markdown')
+    local -ar arg_specs=(
+        ':template:_files -g '\''*.liquid *.html'\'''
+        '--format[Output format\: terminal, json, or markdown.]:format:{__liquid_complete "${___format[@]}"}'
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+_liquid_batch() {
+    local -i ret=1
+    local -ar arg_specs=(
+        ':template-dir:_files -/'
+        '--context-dir[Directory containing optional JSON context files.]:context-dir:_files -/'
+        '(--output -o)'{--output,-o}'[Output directory.]:output:_files -/'
+        '--concurrency[Maximum number of parallel renders. Must be greater than zero.]:concurrency:'
+        '--continue-on-error[Continue rendering remaining templates after a failure.]'
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+_liquid_validate() {
+    local -i ret=1
+    local -ar arg_specs=(
+        ':path:_files -g '\''*.liquid *.html'\'''
+        '--verbose[Show detailed output for each valid file.]'
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+_liquid_benchmark() {
+    local -i ret=1
+    local -ar arg_specs=(
+        ':template:_files -g '\''*.liquid *.html'\'''
+        '(--iterations -i)'{--iterations,-i}'[Number of render iterations. Must be greater than zero.]:iterations:'
+        '--context[Context data file containing a JSON object.]:context:_files -g '\''*.json'\'''
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+_liquid_init() {
+    local -i ret=1
+    local -ar ___type=('simple' 'web' 'api' 'documentation')
+    local -ar arg_specs=(
+        ':name:'
+        '--type[Project type\: simple, web, api, or documentation.]:type:{__liquid_complete "${___type[@]}"}'
+        '--git[Initialize a git repository.]'
+        '--version[Show the version.]'
+        '(-h --help)'{-h,--help}'[Show help information.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+_liquid_help() {
+    local -i ret=1
+    local -ar arg_specs=(
+        '*:subcommands:'
+        '--version[Show the version.]'
+    )
+    _arguments -w -s -S : "${arg_specs[@]}" && ret=0
+
+    return "${ret}"
+}
+
+if [[ "${funcstack[1]}" = _liquid ]]; then
+    _liquid "${@}"
+else
+    compdef _liquid liquid
+fi

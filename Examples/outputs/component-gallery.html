@@ -1,0 +1,91 @@
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Reusable Component Gallery</title>
+  <style>
+    body { margin: 0; background: #17110f; color: #f8efe4; font-family: ui-sans-serif, system-ui, sans-serif; }
+    main { max-width: 1080px; margin: 0 auto; padding: 54px 22px; }
+    h1 { font-size: clamp(44px, 7vw, 86px); line-height: .9; letter-spacing: -.06em; margin: 0 0 16px; }
+    .intro { color: #cdbca9; max-width: 720px; font-size: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    .card { min-height: 220px; padding: 24px; border-radius: 30px; background: #2a211d; border: 1px solid rgba(255,255,255,.12); }
+    .card-success { background: linear-gradient(135deg, #153b34, #25483b); }
+    .card-warning { background: linear-gradient(135deg, #49361d, #76522a); }
+    .card-danger { background: linear-gradient(135deg, #4b2020, #7a3531); }
+    .card-kicker, .badge { font-size: 12px; font-weight: 900; letter-spacing: .12em; }
+    .badge { display: inline-block; margin-right: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.14); }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Reusable Component Gallery</h1>
+    <p class="intro">A compact showcase of RhoeLiquid macros, slots, fills, nested data, and escaped output.</p>
+
+    <section class="grid">
+      
+      
+<article class="card card-success">
+  <div class="card-kicker">SUCCESS</div>
+  <h2>Launch Hero</h2>
+  
+        <p>A bold page header for public release pages and product stories.</p>
+        
+      
+  
+          
+<span class="badge badge-success">Ready</span>
+
+          
+<span class="badge badge-neutral">Design systems</span>
+
+        
+</article>
+
+      
+      
+<article class="card card-warning">
+  <div class="card-kicker">WARNING</div>
+  <h2>Risk Tile</h2>
+  
+        <p>A compact status card for operational dashboards and release readiness reviews.</p>
+        
+      
+  
+          
+<span class="badge badge-warning">Review</span>
+
+          
+<span class="badge badge-neutral">Platform</span>
+
+        
+</article>
+
+      
+      
+<article class="card card-danger">
+  <div class="card-kicker">DANGER</div>
+  <h2>Incident Banner</h2>
+  
+        <p>A high-contrast callout for blocked deploys and security advisories.</p>
+        
+      
+  
+          
+<span class="badge badge-danger">Escalate</span>
+
+          
+<span class="badge badge-neutral">Reliability</span>
+
+        
+</article>
+
+      
+    </section>
+  </main>
+</body>
+</html>

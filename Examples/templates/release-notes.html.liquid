@@ -1,0 +1,60 @@
+{% comment %}
+Run:
+swift run liquid render Examples/templates/release-notes.html.liquid --context Examples/data/release-notes.json --output Examples/outputs/release-notes.html
+{% endcomment %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ release.name | escape }} release notes</title>
+  <style>
+    body { margin: 0; color: #1f2528; background: #f4f7fb; font-family: ui-sans-serif, system-ui, sans-serif; }
+    main { max-width: 980px; margin: 0 auto; padding: 48px 22px; }
+    header { padding: 36px; border-radius: 28px; color: white; background: linear-gradient(135deg, #0f172a, #26547c); }
+    h1 { margin: 10px 0 0; font-size: clamp(40px, 6vw, 78px); letter-spacing: -.05em; }
+    .version { display: inline-block; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 7px 12px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .card, .change { background: white; border-radius: 22px; padding: 22px; box-shadow: 0 16px 48px rgba(31, 37, 40, .08); }
+    .card strong { display: block; font-size: 30px; }
+    .change { margin: 14px 0; border-left: 6px solid #2a9d8f; }
+    .bugfix { border-left-color: #e76f51; }
+    .docs { border-left-color: #e9c46a; }
+    .badge { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #5b6770; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="version">{{ release.version | escape }} / {{ release.date | escape }}</span>
+      <h1>{{ release.name | escape }}</h1>
+      <p>{{ release.summary | escape }}</p>
+    </header>
+
+    <section class="grid">
+      {% for stat in stats %}
+      <div class="card">
+        <strong>{{ stat.value | escape }}</strong>
+        <span>{{ stat.label | escape }}</span>
+      </div>
+      {% endfor %}
+    </section>
+
+    {% for section in sections %}
+    <section>
+      <h2>{{ section.title | escape }}</h2>
+      {% for change in section.changes %}
+      <article class="change {{ section.kind | escape }}">
+        <div class="badge">{{ section.kind | escape }}</div>
+        <h3>{{ change.title | escape }}</h3>
+        <p>{{ change.detail | escape }}</p>
+        {% if change.link %}
+        <a href="{{ change.link | escape }}">Read more</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+    {% endfor %}
+  </main>
+</body>
+</html>

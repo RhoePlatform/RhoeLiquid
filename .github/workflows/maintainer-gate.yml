@@ -1,0 +1,39 @@
+name: Maintainer Gate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  verify:
+    name: Swift, Docs, And Public Hygiene
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Swift Version
+        run: swift --version
+
+      - name: Build
+        run: swift build
+
+      - name: Test
+        run: swift test
+
+      - name: Validate Docs
+        run: bash Scripts/CI/validate-docs.sh
+
+      - name: Validate CLI Artifacts
+        run: bash Scripts/CI/validate-cli-artifacts.sh
+
+      - name: Validate Examples
+        run: bash Scripts/CI/validate-examples.sh
+
+      - name: Validate Public Release Hygiene
+        run: bash Scripts/CI/validate-public-release.sh
+
+      - name: Validate Homebrew Formula Template
+        run: bash Scripts/CI/validate-homebrew-template.sh

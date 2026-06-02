@@ -1,0 +1,29 @@
+{
+  "gallery": {
+    "title": "Reusable Component Gallery",
+    "description": "A compact showcase of RhoeLiquid macros, slots, fills, nested data, and escaped output."
+  },
+  "components": [
+    {
+      "name": "Launch Hero",
+      "tone": "success",
+      "status": "Ready",
+      "owner": "Design systems",
+      "description": "A bold page header for public release pages and product stories."
+    },
+    {
+      "name": "Risk Tile",
+      "tone": "warning",
+      "status": "Review",
+      "owner": "Platform",
+      "description": "A compact status card for operational dashboards and release readiness reviews."
+    },
+    {
+      "name": "Incident Banner",
+      "tone": "danger",
+      "status": "Escalate",
+      "owner": "Reliability",
+      "description": "A high-contrast callout for blocked deploys and security advisories."
+    }
+  ]
+}

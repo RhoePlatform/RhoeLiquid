@@ -1,0 +1,124 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RhoeLiquid launch page</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17211c;
+      --muted: #66736c;
+      --paper: #f8f3e7;
+      --accent: #ff6b35;
+      --accent-2: #0e7c7b;
+      --card: #fffdf7;
+      --line: #ded4c3;
+    }
+    body {
+      margin: 0;
+      font-family: ui-serif, Georgia, serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 53, 0.16), transparent 32rem),
+        linear-gradient(135deg, #f8f3e7, #f0eadc);
+    }
+    main { max-width: 1120px; margin: 0 auto; padding: 56px 24px 72px; }
+    .eyebrow { color: var(--accent-2); font: 700 13px/1.2 ui-sans-serif, system-ui; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 16px 0; font-size: clamp(44px, 8vw, 92px); line-height: .88; letter-spacing: -0.06em; }
+    .lead { max-width: 720px; color: var(--muted); font: 22px/1.45 ui-sans-serif, system-ui; }
+    .hero { display: grid; grid-template-columns: 1.3fr .7fr; gap: 28px; align-items: end; }
+    .panel, .metric, .quote, .feature { background: var(--card); border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(55, 44, 24, .08); border-radius: 28px; }
+    .panel { padding: 28px; }
+    .cta { display: inline-flex; margin-top: 18px; padding: 14px 18px; border-radius: 999px; background: var(--accent); color: #fff; text-decoration: none; font: 800 14px/1 ui-sans-serif, system-ui; }
+    .metrics, .features, .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .metric, .feature, .quote { padding: 22px; }
+    .metric strong { display: block; font-size: 36px; letter-spacing: -.04em; }
+    .metric span, .feature p, .quote p { color: var(--muted); }
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(14, 124, 123, .1); color: var(--accent-2); font: 700 12px/1 ui-sans-serif, system-ui; }
+    @media (max-width: 760px) {
+      .hero, .metrics, .features, .quotes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">DEVELOPER TOOL / 0.1.0 foundation release</div>
+        <h1>Liquid templates that feel engineered, not improvised.</h1>
+        <p class="lead">A Swift-native Liquid engine for documents, services, apps, and command-line workflows.</p>
+        
+        <a class="cta" href="https://github.com/RhoePlatform/RhoeLiquid">Explore the language reference</a>
+        
+      </div>
+      <aside class="panel">
+        <span class="badge">Release candidate</span>
+        <h2>RhoeLiquid</h2>
+        <p>Fast enough for production services, approachable enough for authors, and portable enough for public foundation repos.</p>
+      </aside>
+    </section>
+
+    <section class="metrics" aria-label="Launch metrics">
+      
+      <div class="metric">
+        <strong>50+</strong>
+        <span>built-in filters</span>
+      </div>
+      
+      <div class="metric">
+        <strong>Swift 6</strong>
+        <span>strict-concurrency foundation</span>
+      </div>
+      
+      <div class="metric">
+        <strong>3</strong>
+        <span>CLI, service, and WASM surfaces</span>
+      </div>
+      
+    </section>
+
+    <section class="features" aria-label="Product features">
+      
+      <article class="feature">
+        <span class="badge">Authoring</span>
+        <h3>Macros and slots</h3>
+        <p>Build reusable components without leaving Liquid.</p>
+      </article>
+      
+      <article class="feature">
+        <span class="badge">Runtime</span>
+        <h3>Async rendering</h3>
+        <p>Actor-based internals keep rendering predictable across services and apps.</p>
+      </article>
+      
+      <article class="feature">
+        <span class="badge">Operations</span>
+        <h3>Release evidence</h3>
+        <p>Docs, examples, CLI artifacts, and public hygiene gates travel with the repo.</p>
+      </article>
+      
+    </section>
+
+    <section class="quotes" aria-label="Customer quotes">
+      
+      <figure class="quote">
+        <p>"The examples made the engine click in five minutes."</p>
+        <figcaption>- Mira, documentation engineer</figcaption>
+      </figure>
+      
+      <figure class="quote">
+        <p>"It is rare to see CLI tooling and language docs line up this cleanly."</p>
+        <figcaption>- Jonas, platform maintainer</figcaption>
+      </figure>
+      
+      <figure class="quote">
+        <p>"We rendered a full customer brief before lunch."</p>
+        <figcaption>- Ari, solutions lead</figcaption>
+      </figure>
+      
+    </section>
+  </main>
+</body>
+</html>

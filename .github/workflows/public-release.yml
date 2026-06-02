@@ -1,0 +1,145 @@
+name: Public Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version without leading v"
+        required: true
+        default: "0.1.0"
+        type: string
+      create_github_release:
+        description: "Create or update the GitHub release for vVERSION"
+        required: true
+        default: false
+        type: boolean
+      dispatch_homebrew:
+        description: "Dispatch the homebrew-rhoe bottle/formula workflow"
+        required: true
+        default: false
+        type: boolean
+      publish_homebrew_release:
+        description: "Publish bottle assets to the homebrew-rhoe release"
+        required: true
+        default: false
+        type: boolean
+      commit_homebrew_formula:
+        description: "Commit Formula/rhoe-liquid.rb in homebrew-rhoe"
+        required: true
+        default: false
+        type: boolean
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  certify:
+    name: Certify release
+    runs-on: macos-26
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      source_sha256: ${{ steps.source.outputs.source_sha256 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version
+        id: version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            version="${GITHUB_REF_NAME#v}"
+          else
+            version="${INPUT_VERSION}"
+          fi
+          [[ "$version" =~ ^[0-9]+[.][0-9]+[.][0-9]+([-.][0-9A-Za-z.-]+)?$ ]]
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Verify release readiness
+        run: bash Scripts/CI/verify-release-readiness.sh
+
+      - name: Build CLI product
+        run: swift build -c release --product liquid
+
+      - name: Build service product
+        run: swift build -c release --product RhoeLiquidService
+
+      - name: Extract release notes
+        run: bash Scripts/Release/extract-release-notes.sh "${{ steps.version.outputs.version }}" release_notes.md
+
+      - name: Create or update GitHub release
+        if: github.event_name == 'push' || inputs.create_github_release == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="v${{ steps.version.outputs.version }}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release edit "$tag" --target "$GITHUB_SHA" --title "RhoeLiquid $tag" --notes-file release_notes.md
+          else
+            gh release create "$tag" --target "$GITHUB_SHA" --title "RhoeLiquid $tag" --notes-file release_notes.md
+          fi
+
+      - name: Compute source archive checksum
+        id: source
+        run: |
+          set -euo pipefail
+          version="${{ steps.version.outputs.version }}"
+          url="https://github.com/RhoePlatform/RhoeLiquid/archive/refs/tags/v${version}.tar.gz"
+          curl -fsSL "$url" -o "RhoeLiquid-v${version}.tar.gz"
+          source_sha256="$(shasum -a 256 "RhoeLiquid-v${version}.tar.gz" | awk '{print $1}')"
+          echo "source_sha256=$source_sha256" >> "$GITHUB_OUTPUT"
+          echo "$source_sha256  $url"
+
+      - name: Package DocC release evidence
+        run: |
+          set -euo pipefail
+          tar -czf "rhoeliquid-docc-pages-v${{ steps.version.outputs.version }}.tar.gz" -C .build docc-pages
+
+      - name: Upload release evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: rhoeliquid-release-evidence-${{ steps.version.outputs.version }}
+          path: |
+            release_notes.md
+            RhoeLiquid-v${{ steps.version.outputs.version }}.tar.gz
+            rhoeliquid-docc-pages-v${{ steps.version.outputs.version }}.tar.gz
+
+  dispatch-homebrew:
+    name: Dispatch Homebrew tap
+    needs: certify
+    if: github.event_name == 'push' || inputs.dispatch_homebrew
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require cross-repo release token
+        env:
+          RHOE_RELEASE_BOT_TOKEN: ${{ secrets.RHOE_RELEASE_BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${RHOE_RELEASE_BOT_TOKEN}" ]]; then
+            echo "error: configure RHOE_RELEASE_BOT_TOKEN with workflow dispatch access to RhoePlatform/homebrew-rhoe." >&2
+            exit 1
+          fi
+
+      - name: Dispatch homebrew-rhoe bottle workflow
+        env:
+          GH_TOKEN: ${{ secrets.RHOE_RELEASE_BOT_TOKEN }}
+          VERSION: ${{ needs.certify.outputs.version }}
+          SOURCE_SHA256: ${{ needs.certify.outputs.source_sha256 }}
+          PUBLISH_HOMEBREW_RELEASE: ${{ github.event_name == 'push' && 'true' || inputs.publish_homebrew_release }}
+          COMMIT_HOMEBREW_FORMULA: ${{ github.event_name == 'push' && 'false' || inputs.commit_homebrew_formula }}
+        run: |
+          set -euo pipefail
+          gh workflow run rhoe-liquid-bottles.yml \
+            --repo RhoePlatform/homebrew-rhoe \
+            -f version="$VERSION" \
+            -f source_sha256="$SOURCE_SHA256" \
+            -f publish_release="$PUBLISH_HOMEBREW_RELEASE" \
+            -f commit_formula="$COMMIT_HOMEBREW_FORMULA"

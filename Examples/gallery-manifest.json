@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "package": "RhoeLiquid",
+  "release": "0.1.0",
+  "description": "Self-contained public gallery of runnable RhoeLiquid examples.",
+  "examples": [
+    {
+      "id": "product-launch",
+      "title": "Product Launch Page",
+      "format": "html",
+      "source": "Examples/templates/product-launch.html.liquid",
+      "context": "Examples/data/product-launch.json",
+      "script": "Examples/render-product-launch.sh",
+      "output": "Examples/outputs/product-launch.html",
+      "features": ["loops", "conditionals", "filters", "nested data"]
+    },
+    {
+      "id": "invoice",
+      "title": "Invoice",
+      "format": "html",
+      "source": "Examples/templates/invoice.html.liquid",
+      "context": "Examples/data/invoice.json",
+      "script": "Examples/render-invoice.sh",
+      "output": "Examples/outputs/invoice.html",
+      "features": ["numeric filters", "computed totals", "tables"]
+    },
+    {
+      "id": "release-notes",
+      "title": "Release Notes",
+      "format": "html",
+      "source": "Examples/templates/release-notes.html.liquid",
+      "context": "Examples/data/release-notes.json",
+      "script": "Examples/render-release-notes.sh",
+      "output": "Examples/outputs/release-notes.html",
+      "features": ["grouped sections", "badges", "dates", "links"]
+    },
+    {
+      "id": "component-gallery",
+      "title": "Reusable Component Gallery",
+      "format": "html",
+      "source": "Examples/templates/component-gallery.html.liquid",
+      "context": "Examples/data/component-gallery.json",
+      "script": "Examples/render-component-gallery.sh",
+      "output": "Examples/outputs/component-gallery.html",
+      "features": ["macros", "call blocks", "slots", "reusable components"]
+    },
+    {
+      "id": "config-audit",
+      "title": "Configuration Audit",
+      "format": "html",
+      "source": "Examples/templates/config-audit.html.liquid",
+      "context": "Examples/data/config-audit.json",
+      "script": "Examples/render-config-audit.sh",
+      "output": "Examples/outputs/config-audit.html",
+      "features": ["risk states", "nested loops", "service audit data"]
+    },
+    {
+      "id": "board-brief",
+      "title": "Board Brief",
+      "format": "markdown",
+      "source": "Examples/templates/board-brief.md.liquid",
+      "context": "Examples/data/board-brief.json",
+      "script": "Examples/render-board-brief.sh",
+      "output": "Examples/outputs/board-brief.md",
+      "features": ["Markdown generation", "lists", "KPIs"]
+    },
+    {
+      "id": "research-abstract",
+      "title": "Research Abstract",
+      "format": "markdown",
+      "source": "Examples/templates/research-abstract.md.liquid",
+      "context": "Examples/data/research-abstract.json",
+      "script": "Examples/render-research-abstract.sh",
+      "output": "Examples/outputs/research-abstract.md",
+      "features": ["citations", "structured findings", "keyword lists"]
+    },
+    {
+      "id": "lab-report",
+      "title": "Lab Report",
+      "format": "latex",
+      "source": "Examples/templates/lab-report.tex.liquid",
+      "context": "Examples/data/lab-report.json",
+      "script": "Examples/render-lab-report.sh",
+      "output": "Examples/outputs/lab-report.tex",
+      "features": ["LaTeX generation", "tabular output", "non-HTML documents"]
+    }
+  ]
+}

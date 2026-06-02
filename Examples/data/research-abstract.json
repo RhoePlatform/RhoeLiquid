@@ -1,0 +1,41 @@
+{
+  "paper": {
+    "title": "Structured Templates as Release Evidence",
+    "authors": ["Lea Hoffmann", "Samir Voss", "RhoePlatform Contributors"],
+    "abstract": "We study how executable examples reduce onboarding friction for template engines. A small gallery of real outputs improves first-run confidence and gives maintainers a living release-readiness check."
+  },
+  "findings": [
+    {
+      "claim": "Examples shorten time-to-first-render",
+      "evidence": "Users can run one command and inspect HTML, Markdown, and LaTeX artifacts immediately."
+    },
+    {
+      "claim": "Checked commands improve trust",
+      "evidence": "Each template embeds the exact CLI command used by maintainers."
+    },
+    {
+      "claim": "Diverse outputs clarify scope",
+      "evidence": "The same engine can produce web pages, reports, board briefs, and scientific summaries."
+    }
+  ],
+  "methods": [
+    "Pair every template with a minimal JSON context file.",
+    "Render examples during release validation into a temporary output directory.",
+    "Compare freshly rendered outputs with the checked-in canonical gallery outputs."
+  ],
+  "keywords": ["Liquid", "templates", "release engineering", "documentation", "examples"],
+  "references": [
+    {
+      "authors": "RhoePlatform Maintainers",
+      "title": "RhoeLiquid Language Reference",
+      "venue": "RhoeLiquid Documentation",
+      "year": "2026"
+    },
+    {
+      "authors": "Swift Argument Parser Contributors",
+      "title": "Generated CLI Reference Artifacts",
+      "venue": "Swift Package Plugins",
+      "year": "2026"
+    }
+  ]
+}

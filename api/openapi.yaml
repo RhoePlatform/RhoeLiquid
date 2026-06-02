@@ -1,0 +1,788 @@
+openapi: 3.1.0
+info:
+  title: RhoeLiquid Native Service API
+  version: 0.1.0
+  description: |
+    Localhost HTTP API for the active RhoeLiquid native service surface.
+    `/schema` is the canonical machine-readable contract and this OpenAPI file
+    is generated from the same v0.1.0 public release candidate contract catalog.
+servers:
+  - url: http://localhost:13480
+    description: Default local service endpoint
+paths:
+  /:
+    get:
+      summary: Get basic service information.
+      responses:
+        '200':
+          description: ServiceInfo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+  /health:
+    get:
+      summary: Health check for the local service.
+      responses:
+        '200':
+          description: HealthResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+  /capabilities:
+    get:
+      summary: Discover engine, DOCX, sandbox, and async-job capabilities.
+      responses:
+        '200':
+          description: ServiceCapabilities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCapabilities'
+  /schema:
+    get:
+      summary: Fetch the canonical machine-readable HTTP contract.
+      responses:
+        '200':
+          description: ServiceSchema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceSchema'
+  /render:
+    post:
+      summary: Render a Liquid template immediately.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: RenderResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderResponse'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /analyze:
+    post:
+      summary: Analyze a Liquid template without rendering output.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyzeRequest'
+      responses:
+        '200':
+          description: AnalyzeResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeResponse'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /validate:
+    post:
+      summary: Validate Liquid template syntax.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateRequest'
+      responses:
+        '200':
+          description: ValidateResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateResponse'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /render-docx:
+    post:
+      summary: Render the trusted DOCX subset and return shared diagnostics.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocxRenderRequest'
+      responses:
+        '200':
+          description: DocxRenderResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocxRenderResponse'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /batch:
+    post:
+      summary: Process a synchronous batch of template renders.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+      responses:
+        '200':
+          description: BatchResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /jobs/render:
+    post:
+      summary: Submit an async template render job.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: JobHandle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobHandle'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /jobs/render-docx:
+    post:
+      summary: Submit an async DOCX render job.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocxRenderRequest'
+      responses:
+        '200':
+          description: JobHandle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobHandle'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /jobs/batch:
+    post:
+      summary: Submit an async batch render job.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+      responses:
+        '200':
+          description: JobHandle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobHandle'
+        '400':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /jobs:
+    get:
+      summary: Look up a durable async job by id.
+      responses:
+        '200':
+          description: JobHandle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobHandle'
+        '404':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /jobs:
+    delete:
+      summary: Cancel a queued or running async job by id.
+      responses:
+        '200':
+          description: JobHandle
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobHandle'
+        '404':
+          description: ErrorResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /metrics:
+    get:
+      summary: Get the current service metrics snapshot.
+      responses:
+        '200':
+          description: MetricsResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+components:
+  schemas:
+    PerformanceInfo:
+      type: object
+      description: Aggregated runtime performance information.
+      properties:
+        averageRenderTime:
+          type: number
+        cacheHitRate:
+          type: number
+        cpuUsage:
+          type: number
+        memoryUsage:
+          type: integer
+    ServiceInfo:
+      type: object
+      description: Basic service status and performance summary.
+      properties:
+        engine:
+          type: string
+        performance:
+          $ref: '#/components/schemas/PerformanceInfo'
+        requestsProcessed:
+          type: integer
+        service:
+          type: string
+        status:
+          type: string
+        uptime:
+          type: number
+        version:
+          type: string
+    HealthResponse:
+      type: object
+      description: Health-check payload.
+      properties:
+        active_connections:
+          type: integer
+        cpu_usage:
+          type: number
+        memory_usage:
+          type: number
+        queue_depth:
+          type: integer
+        status:
+          type: string
+        uptime:
+          type: number
+    ServiceSandboxPolicy:
+      type: object
+      description: Active service sandbox policy surface.
+      properties:
+        allowAbsoluteTemplatePaths:
+          type: boolean
+        allowCustomExtensions:
+          type: boolean
+        allowDataSources:
+          type: boolean
+        allowDebugTags:
+          type: boolean
+        allowFileTemplates:
+          type: boolean
+        allowedDataCapabilities:
+          type: array
+          items:
+            type: string
+        allowedFilters:
+          type: array
+          items:
+            type: string
+        allowedTags:
+          type: array
+          items:
+            type: string
+        maxReferencedTemplates:
+          type: integer
+        name:
+          type: string
+    DOCXCoverageSummary:
+      type: object
+      description: Machine-readable summary of the trusted DOCX subset.
+      properties:
+        preservesUnsupportedParts:
+          type: boolean
+        structuredSupportedParts:
+          type: array
+          items:
+            type: string
+        supportedPartCount:
+          type: integer
+        trustedSubsetVersion:
+          type: string
+        unsupportedConstructBehavior:
+          type: string
+        unsupportedPartCount:
+          type: integer
+    DOCXServiceCapabilities:
+      type: object
+      description: DOCX coverage and preservation guarantees exposed by the service.
+      properties:
+        coverageSummary:
+          $ref: '#/components/schemas/DOCXCoverageSummary'
+        notes:
+          type: array
+          items:
+            type: string
+        preservesMediaRelationships:
+          type: boolean
+        preservesNumberingAndStyles:
+          type: boolean
+        preservesUnsupportedParts:
+          type: boolean
+        supportedStructuredParts:
+          type: array
+          items:
+            type: string
+    ServiceSchemaEndpoint:
+      type: object
+      description: One HTTP endpoint exposed by the canonical service schema.
+      properties:
+        capabilityIdentifiers:
+          type: array
+          items:
+            type: string
+        method:
+          type: string
+        path:
+          type: string
+        requestComponent:
+          type: string
+        responseComponents:
+          type: object
+          additionalProperties:
+            type: string
+        summary:
+          type: string
+    ServiceSchemaComponent:
+      type: object
+      description: One named request/response component in the canonical service schema.
+      properties:
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+        kind:
+          type: string
+          enum:
+            "request"
+            "response"
+        name:
+          type: string
+        summary:
+          type: string
+    ServiceCapabilities:
+      type: object
+      description: Capability discovery payload for service-authoritative execution.
+      properties:
+        docx:
+          $ref: '#/components/schemas/DOCXServiceCapabilities'
+        engineVersion:
+          type: string
+        preferredExecution:
+          type: string
+          enum:
+            "service_authoritative"
+            "wasm_fallback"
+        profile:
+          type: string
+          enum:
+            "shopify_compatible"
+            "extended"
+        sandboxPolicy:
+          $ref: '#/components/schemas/ServiceSandboxPolicy'
+        schemaVersion:
+          type: string
+        serviceVersion:
+          type: string
+        supportedFilters:
+          type: array
+          items:
+            type: string
+        supportedJobKinds:
+          type: array
+          items:
+            type: string
+        supportedTags:
+          type: array
+          items:
+            type: string
+        supportsAnalysis:
+          type: boolean
+        supportsAsyncJobs:
+          type: boolean
+        supportsExpressionCallMacros:
+          type: boolean
+        supportsInputContracts:
+          type: boolean
+        supportsMacros:
+          type: boolean
+        supportsValidation:
+          type: boolean
+    ServiceSchema:
+      type: object
+      description: Canonical machine-readable HTTP contract.
+      properties:
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceSchemaComponent'
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceSchemaEndpoint'
+        version:
+          type: string
+    RenderRequest:
+      type: object
+      description: Immediate template render request.
+      properties:
+        context:
+          type: object
+          description: Object
+        options:
+          type: object
+          description: Object?
+        template:
+          type: string
+    RenderResponse:
+      type: object
+      description: Immediate template render response.
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+        metrics:
+          type: object
+          description: Object
+        output:
+          type: string
+        success:
+          type: boolean
+        warnings:
+          type: array
+          items:
+            type: string
+    AnalyzeRequest:
+      type: object
+      description: Template analysis request.
+      properties:
+        context:
+          type: object
+          description: Object
+        template:
+          type: string
+    AnalyzeResponse:
+      type: object
+      description: Template analysis response.
+      properties:
+        analysis:
+          type: object
+          description: Object
+        success:
+          type: boolean
+    ValidateRequest:
+      type: object
+      description: Template validation request.
+      properties:
+        context:
+          type: object
+          description: Object
+        template:
+          type: string
+    ValidateResponse:
+      type: object
+      description: Template validation response.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            description: Object
+        success:
+          type: boolean
+        valid:
+          type: boolean
+        warnings:
+          type: array
+          items:
+            type: string
+    DocxRenderRequest:
+      type: object
+      description: DOCX render request.
+      properties:
+        context:
+          type: object
+          description: Object
+        docx_data:
+          type: string
+        options:
+          type: object
+          description: Object?
+    DocxRenderResponse:
+      type: object
+      description: DOCX render response with shared diagnostics.
+      properties:
+        analysis:
+          $ref: '#/components/schemas/DOCXTemplateAnalysis'
+        docx_data:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+        processing_time:
+          type: number
+        success:
+          type: boolean
+        warnings:
+          type: array
+          items:
+            type: string
+    BatchRequest:
+      type: object
+      description: Async or immediate batch render request.
+      properties:
+        options:
+          type: object
+          description: Object?
+        templates:
+          type: array
+          items:
+            type: object
+            description: Object
+    BatchResponse:
+      type: object
+      description: Immediate batch render response.
+      properties:
+        error_count:
+          type: integer
+        processing_time:
+          type: number
+        results:
+          type: array
+          items:
+            type: object
+            description: Object
+        success:
+          type: boolean
+        success_count:
+          type: integer
+        total_items:
+          type: integer
+    DOCXPartDiagnostic:
+      type: object
+      description: Per-part DOCX analysis result for the trusted subset.
+      properties:
+        path:
+          type: string
+        referencedTemplates:
+          type: array
+          items:
+            type: string
+        referencedVariables:
+          type: array
+          items:
+            type: string
+        unresolvedPlaceholders:
+          type: array
+          items:
+            type: string
+        unsupportedConstructs:
+          type: array
+          items:
+            type: string
+        warnings:
+          type: array
+          items:
+            type: string
+    DOCXTemplateAnalysis:
+      type: object
+      description: Canonical DOCX diagnostic contract shared across service, book backend, and add-in consumers.
+      properties:
+        coverageSummary:
+          $ref: '#/components/schemas/DOCXCoverageSummary'
+        partDiagnostics:
+          type: array
+          items:
+            $ref: '#/components/schemas/DOCXPartDiagnostic'
+        referencedTemplates:
+          type: array
+          items:
+            type: string
+        referencedVariables:
+          type: array
+          items:
+            type: string
+        supportedParts:
+          type: array
+          items:
+            type: string
+        unsupportedParts:
+          type: array
+          items:
+            type: string
+        warnings:
+          type: array
+          items:
+            type: string
+    JobProgress:
+      type: object
+      description: Progress metadata for a durable job.
+      properties:
+        completedSteps:
+          type: integer
+        currentStep:
+          type: string
+        fractionCompleted:
+          type: number
+        totalSteps:
+          type: integer
+    JobDiagnostics:
+      type: object
+      description: Warnings, errors, and analysis attached to a durable job.
+      properties:
+        docxAnalysis:
+          $ref: '#/components/schemas/DOCXTemplateAnalysis'
+        errors:
+          type: array
+          items:
+            type: string
+        templateAnalysis:
+          type: object
+          description: Object
+        warnings:
+          type: array
+          items:
+            type: string
+    JobPayload:
+      type: object
+      description: Completed payload attached to a durable job.
+      properties:
+        batchResult:
+          type: object
+          description: Object
+        docxData:
+          type: string
+        output:
+          type: string
+        processingTime:
+          type: number
+    JobHandle:
+      type: object
+      description: Durable async job handle.
+      properties:
+        createdAt:
+          type: string
+        diagnostics:
+          $ref: '#/components/schemas/JobDiagnostics'
+        error:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        kind:
+          type: string
+        payload:
+          $ref: '#/components/schemas/JobPayload'
+        progress:
+          $ref: '#/components/schemas/JobProgress'
+        status:
+          type: string
+          enum:
+            "queued"
+            "running"
+            "completed"
+            "failed"
+            "cancelled"
+        updatedAt:
+          type: string
+    MetricsResponse:
+      type: object
+      description: Service metrics snapshot.
+      properties:
+        active_connections:
+          type: integer
+        average_render_time:
+          type: number
+        cache_hit_rate:
+          type: number
+        cpu_usage:
+          type: number
+        error_rate:
+          type: number
+        memory_usage:
+          type: integer
+        queue_depth:
+          type: integer
+        recent_activity:
+          type: array
+          items:
+            type: object
+            description: Object
+        requests_today:
+          type: integer
+        total_requests:
+          type: integer
+        uptime:
+          type: number
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        error:
+          type: string
+        success:
+          type: boolean

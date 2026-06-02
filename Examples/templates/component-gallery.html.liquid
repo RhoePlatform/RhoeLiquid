@@ -1,0 +1,54 @@
+{% comment %}
+Run:
+swift run liquid render Examples/templates/component-gallery.html.liquid --context Examples/data/component-gallery.json --output Examples/outputs/component-gallery.html
+{% endcomment %}
+{% macro badge(label, tone: "neutral") %}
+<span class="badge badge-{{ tone }}">{{ label | escape }}</span>
+{% endmacro %}
+{% macro card(title, tone: "neutral") %}
+<article class="card card-{{ tone }}">
+  <div class="card-kicker">{{ tone | upcase }}</div>
+  <h2>{{ title | escape }}</h2>
+  {% slot default %}No body provided.{% endslot %}
+  {% slot footer %}{% endslot %}
+</article>
+{% endmacro %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ gallery.title | escape }}</title>
+  <style>
+    body { margin: 0; background: #17110f; color: #f8efe4; font-family: ui-sans-serif, system-ui, sans-serif; }
+    main { max-width: 1080px; margin: 0 auto; padding: 54px 22px; }
+    h1 { font-size: clamp(44px, 7vw, 86px); line-height: .9; letter-spacing: -.06em; margin: 0 0 16px; }
+    .intro { color: #cdbca9; max-width: 720px; font-size: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+    .card { min-height: 220px; padding: 24px; border-radius: 30px; background: #2a211d; border: 1px solid rgba(255,255,255,.12); }
+    .card-success { background: linear-gradient(135deg, #153b34, #25483b); }
+    .card-warning { background: linear-gradient(135deg, #49361d, #76522a); }
+    .card-danger { background: linear-gradient(135deg, #4b2020, #7a3531); }
+    .card-kicker, .badge { font-size: 12px; font-weight: 900; letter-spacing: .12em; }
+    .badge { display: inline-block; margin-right: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.14); }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>{{ gallery.title | escape }}</h1>
+    <p class="intro">{{ gallery.description | escape }}</p>
+
+    <section class="grid">
+      {% for component in components %}
+      {% call card(title: component.name, tone: component.tone) %}
+        <p>{{ component.description | escape }}</p>
+        {% fill footer %}
+          {{ badge(component.status, tone: component.tone) }}
+          {{ badge(component.owner, tone: "neutral") }}
+        {% endfill %}
+      {% endcall %}
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>

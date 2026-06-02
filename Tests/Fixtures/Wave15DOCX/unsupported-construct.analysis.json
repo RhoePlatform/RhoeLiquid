@@ -1,0 +1,56 @@
+{
+  "coverageSummary": {
+    "preservesUnsupportedParts": true,
+    "structuredSupportedParts": [
+      "word/document.xml",
+      "word/header*.xml",
+      "word/footer*.xml",
+      "word/comments.xml",
+      "word/footnotes.xml",
+      "word/endnotes.xml"
+    ],
+    "supportedPartCount": 1,
+    "trustedSubsetVersion": "trusted-docx-v1",
+    "unsupportedConstructBehavior": "Unsupported or untrusted package parts are preserved byte-for-byte and reported in diagnostics.",
+    "unsupportedPartCount": 4
+  },
+  "partDiagnostics": [
+    {
+      "path": "word/comments.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "comment_text"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [
+        "Liquid markup outside supported <w:t> text nodes is preserved instead of being rewritten."
+      ],
+      "warnings": []
+    },
+    {
+      "path": "word/document.xml",
+      "referencedTemplates": [],
+      "referencedVariables": [
+        "name"
+      ],
+      "unresolvedPlaceholders": [],
+      "unsupportedConstructs": [],
+      "warnings": []
+    }
+  ],
+  "referencedTemplates": [],
+  "referencedVariables": [
+    "comment_text",
+    "name"
+  ],
+  "supportedParts": [
+    "word/document.xml"
+  ],
+  "unsupportedParts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "customXml/item1.xml",
+    "word/comments.xml"
+  ],
+  "warnings": []
+}

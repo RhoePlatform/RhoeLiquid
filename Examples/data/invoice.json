@@ -1,0 +1,41 @@
+{
+  "currency": "$",
+  "seller": {
+    "name": "RhoePlatform Labs"
+  },
+  "buyer": {
+    "name": "Northstar Documentation Co."
+  },
+  "invoice": {
+    "number": "RL-2026-0017",
+    "status": "Ready to send",
+    "issued_on": "2026-06-01",
+    "due_on": "2026-06-15",
+    "payment_note": "Thank you for supporting open foundation tooling."
+  },
+  "line_items": [
+    {
+      "name": "Template migration workshop",
+      "description": "Audit and migration plan for legacy Liquid templates.",
+      "quantity": 1,
+      "unit_price": 1800
+    },
+    {
+      "name": "Renderer integration package",
+      "description": "CLI workflow, data fixtures, and release evidence wiring.",
+      "quantity": 2,
+      "unit_price": 950
+    },
+    {
+      "name": "Documentation polish sprint",
+      "description": "Language reference, examples, and contributor onboarding.",
+      "quantity": 1,
+      "unit_price": 1200
+    }
+  ],
+  "totals": {
+    "subtotal": 4900,
+    "tax": 367.5,
+    "due": 5267.5
+  }
+}

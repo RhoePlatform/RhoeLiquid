@@ -1,0 +1,38 @@
+{
+  "name": "unsupported-construct",
+  "description": "Trusted DOCX subset with Liquid markup outside supported text nodes to verify preserve-and-report behavior.",
+  "context": {
+    "name": "Wave Fifteen",
+    "comment_text": "Needs Review",
+    "reviewer": {
+      "name": "Avery"
+    }
+  },
+  "entries": [
+    {
+      "path": "[Content_Types].xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">\n  <Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>\n  <Default Extension=\"xml\" ContentType=\"application/xml\"/>\n  <Override PartName=\"/word/document.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml\"/>\n  <Override PartName=\"/word/comments.xml\" ContentType=\"application/vnd.openxmlformats-officedocument.wordprocessingml.comments+xml\"/>\n</Types>"
+    },
+    {
+      "path": "_rels/.rels",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">\n  <Relationship Id=\"rId1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument\" Target=\"word/document.xml\"/>\n</Relationships>"
+    },
+    {
+      "path": "word/document.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:body>\n    <w:p><w:r><w:t>Hello {{ name }}</w:t></w:r></w:p>\n  </w:body>\n</w:document>"
+    },
+    {
+      "path": "word/comments.xml",
+      "encoding": "utf8",
+      "content": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\">\n  <w:comment w:id=\"0\" w:author=\"{{ reviewer.name }}\">\n    <w:p><w:r><w:t>Comment {{ comment_text }}</w:t></w:r></w:p>\n  </w:comment>\n</w:comments>"
+    },
+    {
+      "path": "customXml/item1.xml",
+      "encoding": "utf8",
+      "content": "<root>{{ preserved_value }}</root>"
+    }
+  ]
+}

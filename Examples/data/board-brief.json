@@ -1,0 +1,38 @@
+{
+  "brief": {
+    "title": "Public Foundation Release Brief",
+    "audience": "RhoePlatform steering group",
+    "date": "2026-06-01",
+    "decision": "Approve the first Apache 2.0 foundation release candidate.",
+    "summary": "The RhoeLiquid foundation repo is ready for final public release certification once release hygiene, documentation, examples, and initial commit sequencing are complete."
+  },
+  "metrics": [
+    { "name": "Release readiness gates", "value": "7/7", "signal": "green" },
+    { "name": "Runnable examples", "value": "8", "signal": "green" },
+    { "name": "Known blocker count", "value": "0", "signal": "green" }
+  ],
+  "actions": [
+    {
+      "title": "Keep examples source-first",
+      "detail": "Keep each template, JSON context, render script, and canonical output together in the Examples gallery."
+    },
+    {
+      "title": "Preserve clean initial history",
+      "detail": "Complete final certification before creating the clean initial repository history."
+    },
+    {
+      "title": "Prepare Homebrew follow-through",
+      "detail": "Use the existing formula template only after the initial tag and checksum exist."
+    }
+  ],
+  "risks": [
+    {
+      "level": "Low",
+      "description": "Public users may expect more framework-specific examples after the initial gallery."
+    },
+    {
+      "level": "Medium",
+      "description": "Canonical outputs must be regenerated when template behavior intentionally changes."
+    }
+  ]
+}

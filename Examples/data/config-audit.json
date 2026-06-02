@@ -1,0 +1,42 @@
+{
+  "audit": {
+    "name": "Local Compute Kernel Audit",
+    "generated_on": "2026-06-01",
+    "summary": "A fictional operations dashboard rendered from nested JSON service metadata."
+  },
+  "summary": [
+    { "value": 6, "label": "checks" },
+    { "value": 4, "label": "passed" },
+    { "value": 2, "label": "review items" },
+    { "value": 3, "label": "managed services" }
+  ],
+  "services": [
+    {
+      "name": "Python Kernel",
+      "risk": "Low",
+      "description": "Sandboxed authoring kernel for notebook-style computation.",
+      "checks": [
+        { "key": "venv.present", "passed": true, "note": "" },
+        { "key": "packages.pinned", "passed": true, "note": "" }
+      ]
+    },
+    {
+      "name": "Rust Kernel",
+      "risk": "Medium",
+      "description": "Host-local cargo environment for compiled compute extensions.",
+      "checks": [
+        { "key": "toolchain.locked", "passed": true, "note": "" },
+        { "key": "cache.pruned", "passed": false, "note": "Last cleanup was 19 days ago." }
+      ]
+    },
+    {
+      "name": "Container Runtime",
+      "risk": "High",
+      "description": "Local image runner for standardized Linux compute images.",
+      "checks": [
+        { "key": "catalog.signature", "passed": true, "note": "" },
+        { "key": "image.updates", "passed": false, "note": "Two images have newer secure baselines." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Service Identity -->
+    <key>Label</key>
+    <string>com.rhoeliquid.service</string>
+    
+    <!-- Program Configuration -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/USERNAME/Library/Application Support/RhoeLiquid/bin/RhoeLiquidService</string>
+        <string>--service-mode</string>
+        <string>--port</string>
+        <string>13480</string>
+        <string>--mode</string>
+        <string>balanced</string>
+        <string>--log-level</string>
+        <string>info</string>
+    </array>
+    
+    <!-- Service Behavior -->
+    <key>RunAtLoad</key>
+    <true/>
+    
+    <key>KeepAlive</key>
+    <dict>
+        <key>Crashed</key>
+        <true/>
+        <key>SuccessfulExit</key>
+        <false/>
+        <key>NetworkState</key>
+        <false/>
+    </dict>
+    
+    <!-- Process Management -->
+    <key>ProcessType</key>
+    <string>Interactive</string>
+    
+    <key>LimitLoadToSessionType</key>
+    <array>
+        <string>Aqua</string>
+    </array>
+    
+    <!-- Resource Limits -->
+    <key>SoftResourceLimits</key>
+    <dict>
+        <key>NumberOfFiles</key>
+        <integer>1024</integer>
+        <key>NumberOfProcesses</key>
+        <integer>100</integer>
+    </dict>
+    
+    <key>HardResourceLimits</key>
+    <dict>
+        <key>NumberOfFiles</key>
+        <integer>2048</integer>
+        <key>NumberOfProcesses</key>
+        <integer>200</integer>
+    </dict>
+    
+    <!-- Logging Configuration -->
+    <key>StandardOutPath</key>
+    <string>/Users/USERNAME/Library/Logs/RhoeLiquid/service.log</string>
+    
+    <key>StandardErrorPath</key>
+    <string>/Users/USERNAME/Library/Logs/RhoeLiquid/service-error.log</string>
+    
+    <!-- Environment Variables -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>RHOELIQUID_SERVICE_MODE</key>
+        <string>production</string>
+        <key>RHOELIQUID_AUTO_START</key>
+        <string>true</string>
+    </dict>
+    
+    <!-- Working Directory -->
+    <key>WorkingDirectory</key>
+    <string>/Users/USERNAME/Library/Application Support/RhoeLiquid/bin</string>
+    
+    <!-- User and Group -->
+    <key>UserName</key>
+    <string>USERNAME</string>
+    
+    <!-- Security -->
+    <key>EnableGlobbing</key>
+    <false/>
+    
+    <key>EnableTransactions</key>
+    <false/>
+    
+    <!-- Throttling -->
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+    
+    <!-- Service Description -->
+    <key>ServiceDescription</key>
+    <string>RhoeLiquid Native Service - Revolutionary template processing engine for macOS</string>
+</dict>
+</plist>

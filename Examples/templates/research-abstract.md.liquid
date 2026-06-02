@@ -1,0 +1,33 @@
+{% comment %}
+Run:
+swift run liquid render Examples/templates/research-abstract.md.liquid --context Examples/data/research-abstract.json --output Examples/outputs/research-abstract.md
+{% endcomment %}
+# {{ paper.title }}
+
+{% for author in paper.authors %}{% if forloop.first == false %}, {% endif %}{{ author }}{% endfor %}
+
+## Abstract
+
+{{ paper.abstract }}
+
+## Findings
+
+{% for finding in findings %}
+- **{{ finding.claim }}**: {{ finding.evidence }}
+{% endfor %}
+
+## Methods
+
+{% for method in methods %}
+{{ forloop.index }}. {{ method }}
+{% endfor %}
+
+## Keywords
+
+{{ keywords | join: ", " }}
+
+## References
+
+{% for reference in references %}
+{{ forloop.index }}. {{ reference.authors }}. "{{ reference.title }}." {{ reference.venue }}, {{ reference.year }}.
+{% endfor %}

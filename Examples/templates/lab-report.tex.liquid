@@ -1,0 +1,43 @@
+{% comment %}
+Run:
+swift run liquid render Examples/templates/lab-report.tex.liquid --context Examples/data/lab-report.json --output Examples/outputs/lab-report.tex
+{% endcomment %}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{ {{ report.title }} }
+\author{ {{ report.author }} }
+\date{ {{ report.date }} }
+
+\begin{document}
+\maketitle
+
+\section*{Purpose}
+{{ report.purpose }}
+
+\section*{Protocol}
+\begin{enumerate}
+{% for step in protocol %}
+  \item {{ step }}
+{% endfor %}
+\end{enumerate}
+
+\section*{Measurements}
+\begin{tabular}{lrrr}
+\toprule
+Sample & Baseline & Observed & Delta \\
+\midrule
+{% for sample in samples %}
+{{ sample.name }} & {{ sample.baseline }} & {{ sample.observed }} & {{ sample.delta }} \\
+{% endfor %}
+\bottomrule
+\end{tabular}
+
+\section*{Interpretation}
+{% for note in interpretation %}
+\paragraph{ {{ note.label }} } {{ note.text }}
+{% endfor %}
+
+\end{document}

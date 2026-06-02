@@ -1,0 +1,104 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RhoeLiquid Public Foundation release notes</title>
+  <style>
+    body { margin: 0; color: #1f2528; background: #f4f7fb; font-family: ui-sans-serif, system-ui, sans-serif; }
+    main { max-width: 980px; margin: 0 auto; padding: 48px 22px; }
+    header { padding: 36px; border-radius: 28px; color: white; background: linear-gradient(135deg, #0f172a, #26547c); }
+    h1 { margin: 10px 0 0; font-size: clamp(40px, 6vw, 78px); letter-spacing: -.05em; }
+    .version { display: inline-block; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 7px 12px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .card, .change { background: white; border-radius: 22px; padding: 22px; box-shadow: 0 16px 48px rgba(31, 37, 40, .08); }
+    .card strong { display: block; font-size: 30px; }
+    .change { margin: 14px 0; border-left: 6px solid #2a9d8f; }
+    .bugfix { border-left-color: #e76f51; }
+    .docs { border-left-color: #e9c46a; }
+    .badge { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #5b6770; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="version">0.1.0 / 2026-06-01</span>
+      <h1>RhoeLiquid Public Foundation</h1>
+      <p>The first public foundation candidate: engine, CLI, docs, service contracts, and runnable examples.</p>
+    </header>
+
+    <section class="grid">
+      
+      <div class="card">
+        <strong>8</strong>
+        <span>gallery examples</span>
+      </div>
+      
+      <div class="card">
+        <strong>1</strong>
+        <span>generated manual page</span>
+      </div>
+      
+      <div class="card">
+        <strong>3</strong>
+        <span>shell completion scripts</span>
+      </div>
+      
+    </section>
+
+    
+    <section>
+      <h2>Highlights</h2>
+      
+      <article class="change feature">
+        <div class="badge">feature</div>
+        <h3>DocC-native language reference</h3>
+        <p>A self-contained reference now documents standard Liquid and RhoeLiquid extensions in one place.</p>
+        
+        <a href="https://github.com/RhoePlatform/RhoeLiquid">Read more</a>
+        
+      </article>
+      
+      <article class="change feature">
+        <div class="badge">feature</div>
+        <h3>CLI artifacts</h3>
+        <p>The repository includes a generated man page and shell completions for bash, zsh, and fish.</p>
+        
+        <a href="">Read more</a>
+        
+      </article>
+      
+    </section>
+    
+    <section>
+      <h2>Fixes</h2>
+      
+      <article class="change bugfix">
+        <div class="badge">bugfix</div>
+        <h3>Argument validation</h3>
+        <p>Numeric CLI options now fail early when concurrency or iteration counts are not positive.</p>
+        
+        <a href="">Read more</a>
+        
+      </article>
+      
+    </section>
+    
+    <section>
+      <h2>Documentation</h2>
+      
+      <article class="change docs">
+        <div class="badge">docs</div>
+        <h3>Example gallery</h3>
+        <p>Real templates now show HTML, Markdown, LaTeX, macros, filters, and data-driven rendering.</p>
+        
+        <a href="">Read more</a>
+        
+      </article>
+      
+    </section>
+    
+  </main>
+</body>
+</html>

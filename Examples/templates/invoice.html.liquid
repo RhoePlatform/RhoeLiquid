@@ -1,0 +1,89 @@
+{% comment %}
+Run:
+swift run liquid render Examples/templates/invoice.html.liquid --context Examples/data/invoice.json --output Examples/outputs/invoice.html
+{% endcomment %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Invoice {{ invoice.number | escape }}</title>
+  <style>
+    body { margin: 0; background: #eef2f0; color: #10231d; font-family: ui-sans-serif, system-ui, sans-serif; }
+    .sheet { max-width: 920px; margin: 40px auto; background: white; border-radius: 24px; box-shadow: 0 24px 80px rgba(16, 35, 29, .14); overflow: hidden; }
+    header { display: flex; justify-content: space-between; gap: 24px; padding: 42px; background: #12372f; color: white; }
+    h1 { margin: 0; font-size: 52px; letter-spacing: -.05em; }
+    h2 { margin: 0 0 8px; }
+    .meta { text-align: right; color: #c7ded7; }
+    section { padding: 34px 42px; }
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; color: #5d6d67; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+    td, th { padding: 14px 0; border-bottom: 1px solid #dbe3df; }
+    td:last-child, th:last-child { text-align: right; }
+    .total { font-size: 22px; font-weight: 800; }
+    .pill { display: inline-block; border-radius: 999px; padding: 6px 10px; background: #e7f6ef; color: #12633f; font-size: 12px; font-weight: 800; }
+    .notes { color: #5d6d67; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+    <header>
+      <div>
+        <span class="pill">{{ invoice.status | escape }}</span>
+        <h1>Invoice</h1>
+        <p>{{ seller.name | escape }} to {{ buyer.name | escape }}</p>
+      </div>
+      <div class="meta">
+        <strong>{{ invoice.number | escape }}</strong><br>
+        Issued {{ invoice.issued_on | escape }}<br>
+        Due {{ invoice.due_on | escape }}
+      </div>
+    </header>
+
+    <section>
+      <h2>Line Items</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in line_items %}
+          {% assign line_total = item.quantity | times: item.unit_price %}
+          <tr>
+            <td>
+              <strong>{{ item.name | escape }}</strong><br>
+              <small>{{ item.description | escape }}</small>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ currency }}{{ item.unit_price | round: 2 }}</td>
+            <td>{{ currency }}{{ line_total | round: 2 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">Subtotal</td>
+            <td>{{ currency }}{{ totals.subtotal | round: 2 }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Tax</td>
+            <td>{{ currency }}{{ totals.tax | round: 2 }}</td>
+          </tr>
+          <tr class="total">
+            <td colspan="3">Amount Due</td>
+            <td>{{ currency }}{{ totals.due | round: 2 }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <section class="notes">
+      <strong>Payment note:</strong> {{ invoice.payment_note | escape }}
+    </section>
+  </article>
+</body>
+</html>

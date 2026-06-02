@@ -1,0 +1,537 @@
+{
+  "components" : [
+    {
+      "fields" : {
+        "averageRenderTime" : "Double",
+        "cacheHitRate" : "Double",
+        "cpuUsage" : "Double",
+        "memoryUsage" : "Int"
+      },
+      "kind" : "response",
+      "name" : "PerformanceInfo",
+      "summary" : "Aggregated runtime performance information."
+    },
+    {
+      "fields" : {
+        "engine" : "String",
+        "performance" : "PerformanceInfo",
+        "requestsProcessed" : "Int",
+        "service" : "String",
+        "status" : "String",
+        "uptime" : "Double",
+        "version" : "String"
+      },
+      "kind" : "response",
+      "name" : "ServiceInfo",
+      "summary" : "Basic service status and performance summary."
+    },
+    {
+      "fields" : {
+        "active_connections" : "Int",
+        "cpu_usage" : "Double",
+        "memory_usage" : "Double",
+        "queue_depth" : "Int",
+        "status" : "String",
+        "uptime" : "Double"
+      },
+      "kind" : "response",
+      "name" : "HealthResponse",
+      "summary" : "Health-check payload."
+    },
+    {
+      "fields" : {
+        "allowAbsoluteTemplatePaths" : "Bool",
+        "allowCustomExtensions" : "Bool",
+        "allowDataSources" : "Bool",
+        "allowDebugTags" : "Bool",
+        "allowFileTemplates" : "Bool",
+        "allowedDataCapabilities?" : "[String]",
+        "allowedFilters?" : "[String]",
+        "allowedTags?" : "[String]",
+        "maxReferencedTemplates?" : "Int",
+        "name" : "String"
+      },
+      "kind" : "response",
+      "name" : "ServiceSandboxPolicy",
+      "summary" : "Active service sandbox policy surface."
+    },
+    {
+      "fields" : {
+        "preservesUnsupportedParts" : "Bool",
+        "structuredSupportedParts" : "[String]",
+        "supportedPartCount" : "Int",
+        "trustedSubsetVersion" : "String",
+        "unsupportedConstructBehavior" : "String",
+        "unsupportedPartCount" : "Int"
+      },
+      "kind" : "response",
+      "name" : "DOCXCoverageSummary",
+      "summary" : "Machine-readable summary of the trusted DOCX subset."
+    },
+    {
+      "fields" : {
+        "coverageSummary" : "DOCXCoverageSummary",
+        "notes" : "[String]",
+        "preservesMediaRelationships" : "Bool",
+        "preservesNumberingAndStyles" : "Bool",
+        "preservesUnsupportedParts" : "Bool",
+        "supportedStructuredParts" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "DOCXServiceCapabilities",
+      "summary" : "DOCX coverage and preservation guarantees exposed by the service."
+    },
+    {
+      "fields" : {
+        "capabilityIdentifiers" : "[String]",
+        "method" : "String",
+        "path" : "String",
+        "requestComponent?" : "String",
+        "responseComponents" : "Record<String, String>",
+        "summary" : "String"
+      },
+      "kind" : "response",
+      "name" : "ServiceSchemaEndpoint",
+      "summary" : "One HTTP endpoint exposed by the canonical service schema."
+    },
+    {
+      "fields" : {
+        "fields" : "Record<String, String>",
+        "kind" : "\"request\" | \"response\"",
+        "name" : "String",
+        "summary" : "String"
+      },
+      "kind" : "response",
+      "name" : "ServiceSchemaComponent",
+      "summary" : "One named request\/response component in the canonical service schema."
+    },
+    {
+      "fields" : {
+        "docx" : "DOCXServiceCapabilities",
+        "engineVersion" : "String",
+        "preferredExecution" : "\"service_authoritative\" | \"wasm_fallback\"",
+        "profile" : "\"shopify_compatible\" | \"extended\"",
+        "sandboxPolicy" : "ServiceSandboxPolicy",
+        "schemaVersion" : "String",
+        "serviceVersion" : "String",
+        "supportedFilters" : "[String]",
+        "supportedJobKinds" : "[String]",
+        "supportedTags" : "[String]",
+        "supportsAnalysis" : "Bool",
+        "supportsAsyncJobs" : "Bool",
+        "supportsExpressionCallMacros" : "Bool",
+        "supportsInputContracts" : "Bool",
+        "supportsMacros" : "Bool",
+        "supportsValidation" : "Bool"
+      },
+      "kind" : "response",
+      "name" : "ServiceCapabilities",
+      "summary" : "Capability discovery payload for service-authoritative execution."
+    },
+    {
+      "fields" : {
+        "components" : "[ServiceSchemaComponent]",
+        "endpoints" : "[ServiceSchemaEndpoint]",
+        "version" : "String"
+      },
+      "kind" : "response",
+      "name" : "ServiceSchema",
+      "summary" : "Canonical machine-readable HTTP contract."
+    },
+    {
+      "fields" : {
+        "context" : "Object",
+        "options" : "Object?",
+        "template" : "String"
+      },
+      "kind" : "request",
+      "name" : "RenderRequest",
+      "summary" : "Immediate template render request."
+    },
+    {
+      "fields" : {
+        "errors" : "[String]",
+        "metrics" : "Object",
+        "output" : "String",
+        "success" : "Bool",
+        "warnings" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "RenderResponse",
+      "summary" : "Immediate template render response."
+    },
+    {
+      "fields" : {
+        "context?" : "Object",
+        "template" : "String"
+      },
+      "kind" : "request",
+      "name" : "AnalyzeRequest",
+      "summary" : "Template analysis request."
+    },
+    {
+      "fields" : {
+        "analysis" : "Object",
+        "success" : "Bool"
+      },
+      "kind" : "response",
+      "name" : "AnalyzeResponse",
+      "summary" : "Template analysis response."
+    },
+    {
+      "fields" : {
+        "context?" : "Object",
+        "template" : "String"
+      },
+      "kind" : "request",
+      "name" : "ValidateRequest",
+      "summary" : "Template validation request."
+    },
+    {
+      "fields" : {
+        "errors" : "[Object]",
+        "success" : "Bool",
+        "valid" : "Bool",
+        "warnings" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "ValidateResponse",
+      "summary" : "Template validation response."
+    },
+    {
+      "fields" : {
+        "context" : "Object",
+        "docx_data" : "Base64 String",
+        "options" : "Object?"
+      },
+      "kind" : "request",
+      "name" : "DocxRenderRequest",
+      "summary" : "DOCX render request."
+    },
+    {
+      "fields" : {
+        "analysis" : "DOCXTemplateAnalysis",
+        "docx_data" : "Base64 String",
+        "errors" : "[String]",
+        "processing_time" : "Double",
+        "success" : "Bool",
+        "warnings" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "DocxRenderResponse",
+      "summary" : "DOCX render response with shared diagnostics."
+    },
+    {
+      "fields" : {
+        "options" : "Object?",
+        "templates" : "[Object]"
+      },
+      "kind" : "request",
+      "name" : "BatchRequest",
+      "summary" : "Async or immediate batch render request."
+    },
+    {
+      "fields" : {
+        "error_count" : "Int",
+        "processing_time" : "Double",
+        "results" : "[Object]",
+        "success" : "Bool",
+        "success_count" : "Int",
+        "total_items" : "Int"
+      },
+      "kind" : "response",
+      "name" : "BatchResponse",
+      "summary" : "Immediate batch render response."
+    },
+    {
+      "fields" : {
+        "path" : "String",
+        "referencedTemplates" : "[String]",
+        "referencedVariables" : "[String]",
+        "unresolvedPlaceholders" : "[String]",
+        "unsupportedConstructs" : "[String]",
+        "warnings" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "DOCXPartDiagnostic",
+      "summary" : "Per-part DOCX analysis result for the trusted subset."
+    },
+    {
+      "fields" : {
+        "coverageSummary" : "DOCXCoverageSummary",
+        "partDiagnostics" : "[DOCXPartDiagnostic]",
+        "referencedTemplates" : "[String]",
+        "referencedVariables" : "[String]",
+        "supportedParts" : "[String]",
+        "unsupportedParts" : "[String]",
+        "warnings" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "DOCXTemplateAnalysis",
+      "summary" : "Canonical DOCX diagnostic contract shared across service, book backend, and add-in consumers."
+    },
+    {
+      "fields" : {
+        "completedSteps?" : "Int",
+        "currentStep" : "String",
+        "fractionCompleted" : "Double",
+        "totalSteps?" : "Int"
+      },
+      "kind" : "response",
+      "name" : "JobProgress",
+      "summary" : "Progress metadata for a durable job."
+    },
+    {
+      "fields" : {
+        "docxAnalysis?" : "DOCXTemplateAnalysis",
+        "errors" : "[String]",
+        "templateAnalysis?" : "Object",
+        "warnings" : "[String]"
+      },
+      "kind" : "response",
+      "name" : "JobDiagnostics",
+      "summary" : "Warnings, errors, and analysis attached to a durable job."
+    },
+    {
+      "fields" : {
+        "batchResult?" : "Object",
+        "docxData?" : "Base64 String",
+        "output?" : "String",
+        "processingTime?" : "Double"
+      },
+      "kind" : "response",
+      "name" : "JobPayload",
+      "summary" : "Completed payload attached to a durable job."
+    },
+    {
+      "fields" : {
+        "createdAt" : "String",
+        "diagnostics" : "JobDiagnostics",
+        "error?" : "String",
+        "expiresAt" : "String",
+        "id" : "String",
+        "kind" : "String",
+        "payload?" : "JobPayload",
+        "progress" : "JobProgress",
+        "status" : "\"queued\" | \"running\" | \"completed\" | \"failed\" | \"cancelled\"",
+        "updatedAt" : "String"
+      },
+      "kind" : "response",
+      "name" : "JobHandle",
+      "summary" : "Durable async job handle."
+    },
+    {
+      "fields" : {
+        "active_connections" : "Int",
+        "average_render_time" : "Double",
+        "cache_hit_rate" : "Double",
+        "cpu_usage" : "Double",
+        "error_rate" : "Double",
+        "memory_usage" : "Int",
+        "queue_depth" : "Int",
+        "recent_activity" : "[Object]",
+        "requests_today" : "Int",
+        "total_requests" : "Int",
+        "uptime" : "Double"
+      },
+      "kind" : "response",
+      "name" : "MetricsResponse",
+      "summary" : "Service metrics snapshot."
+    },
+    {
+      "fields" : {
+        "error" : "String",
+        "success" : "Bool"
+      },
+      "kind" : "response",
+      "name" : "ErrorResponse",
+      "summary" : "Standard error response."
+    }
+  ],
+  "endpoints" : [
+    {
+      "capabilityIdentifiers" : [
+
+      ],
+      "method" : "GET",
+      "path" : "\/",
+      "responseComponents" : {
+        "200" : "ServiceInfo"
+      },
+      "summary" : "Get basic service information."
+    },
+    {
+      "capabilityIdentifiers" : [
+
+      ],
+      "method" : "GET",
+      "path" : "\/health",
+      "responseComponents" : {
+        "200" : "HealthResponse"
+      },
+      "summary" : "Health check for the local service."
+    },
+    {
+      "capabilityIdentifiers" : [
+
+      ],
+      "method" : "GET",
+      "path" : "\/capabilities",
+      "responseComponents" : {
+        "200" : "ServiceCapabilities"
+      },
+      "summary" : "Discover engine, DOCX, sandbox, and async-job capabilities."
+    },
+    {
+      "capabilityIdentifiers" : [
+
+      ],
+      "method" : "GET",
+      "path" : "\/schema",
+      "responseComponents" : {
+        "200" : "ServiceSchema"
+      },
+      "summary" : "Fetch the canonical machine-readable HTTP contract."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "render.sync"
+      ],
+      "method" : "POST",
+      "path" : "\/render",
+      "requestComponent" : "RenderRequest",
+      "responseComponents" : {
+        "200" : "RenderResponse",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Render a Liquid template immediately."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "analysis.template"
+      ],
+      "method" : "POST",
+      "path" : "\/analyze",
+      "requestComponent" : "AnalyzeRequest",
+      "responseComponents" : {
+        "200" : "AnalyzeResponse",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Analyze a Liquid template without rendering output."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "validation.template"
+      ],
+      "method" : "POST",
+      "path" : "\/validate",
+      "requestComponent" : "ValidateRequest",
+      "responseComponents" : {
+        "200" : "ValidateResponse",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Validate Liquid template syntax."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "render.docx"
+      ],
+      "method" : "POST",
+      "path" : "\/render-docx",
+      "requestComponent" : "DocxRenderRequest",
+      "responseComponents" : {
+        "200" : "DocxRenderResponse",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Render the trusted DOCX subset and return shared diagnostics."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "render.batch.sync"
+      ],
+      "method" : "POST",
+      "path" : "\/batch",
+      "requestComponent" : "BatchRequest",
+      "responseComponents" : {
+        "200" : "BatchResponse",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Process a synchronous batch of template renders."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "jobs.render"
+      ],
+      "method" : "POST",
+      "path" : "\/jobs\/render",
+      "requestComponent" : "RenderRequest",
+      "responseComponents" : {
+        "200" : "JobHandle",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Submit an async template render job."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "jobs.render_docx"
+      ],
+      "method" : "POST",
+      "path" : "\/jobs\/render-docx",
+      "requestComponent" : "DocxRenderRequest",
+      "responseComponents" : {
+        "200" : "JobHandle",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Submit an async DOCX render job."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "jobs.batch"
+      ],
+      "method" : "POST",
+      "path" : "\/jobs\/batch",
+      "requestComponent" : "BatchRequest",
+      "responseComponents" : {
+        "200" : "JobHandle",
+        "400" : "ErrorResponse"
+      },
+      "summary" : "Submit an async batch render job."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "jobs.lookup"
+      ],
+      "method" : "GET",
+      "path" : "\/jobs",
+      "responseComponents" : {
+        "200" : "JobHandle",
+        "404" : "ErrorResponse"
+      },
+      "summary" : "Look up a durable async job by id."
+    },
+    {
+      "capabilityIdentifiers" : [
+        "jobs.cancel"
+      ],
+      "method" : "DELETE",
+      "path" : "\/jobs",
+      "responseComponents" : {
+        "200" : "JobHandle",
+        "404" : "ErrorResponse"
+      },
+      "summary" : "Cancel a queued or running async job by id."
+    },
+    {
+      "capabilityIdentifiers" : [
+
+      ],
+      "method" : "GET",
+      "path" : "\/metrics",
+      "responseComponents" : {
+        "200" : "MetricsResponse"
+      },
+      "summary" : "Get the current service metrics snapshot."
+    }
+  ],
+  "version" : "v1rc1"
+}

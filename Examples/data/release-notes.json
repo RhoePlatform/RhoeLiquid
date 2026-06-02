@@ -1,0 +1,53 @@
+{
+  "release": {
+    "name": "RhoeLiquid Public Foundation",
+    "version": "0.1.0",
+    "date": "2026-06-01",
+    "summary": "The first public foundation candidate: engine, CLI, docs, service contracts, and runnable examples."
+  },
+  "stats": [
+    { "value": "8", "label": "gallery examples" },
+    { "value": "1", "label": "generated manual page" },
+    { "value": "3", "label": "shell completion scripts" }
+  ],
+  "sections": [
+    {
+      "title": "Highlights",
+      "kind": "feature",
+      "changes": [
+        {
+          "title": "DocC-native language reference",
+          "detail": "A self-contained reference now documents standard Liquid and RhoeLiquid extensions in one place.",
+          "link": "https://github.com/RhoePlatform/RhoeLiquid"
+        },
+        {
+          "title": "CLI artifacts",
+          "detail": "The repository includes a generated man page and shell completions for bash, zsh, and fish.",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "title": "Fixes",
+      "kind": "bugfix",
+      "changes": [
+        {
+          "title": "Argument validation",
+          "detail": "Numeric CLI options now fail early when concurrency or iteration counts are not positive.",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "title": "Documentation",
+      "kind": "docs",
+      "changes": [
+        {
+          "title": "Example gallery",
+          "detail": "Real templates now show HTML, Markdown, LaTeX, macros, filters, and data-driven rendering.",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "product": {
+    "name": "RhoeLiquid",
+    "category": "developer tool",
+    "tagline": "Liquid templates that feel engineered, not improvised.",
+    "summary": "A Swift-native Liquid engine for documents, services, apps, and command-line workflows.",
+    "positioning": "Fast enough for production services, approachable enough for authors, and portable enough for public foundation repos."
+  },
+  "launch": {
+    "season": "0.1.0 foundation release",
+    "status": "Release candidate",
+    "is_public": true,
+    "cta": "Explore the language reference",
+    "url": "https://github.com/RhoePlatform/RhoeLiquid"
+  },
+  "metrics": [
+    { "value": "50+", "label": "built-in filters" },
+    { "value": "Swift 6", "label": "strict-concurrency foundation" },
+    { "value": "3", "label": "CLI, service, and WASM surfaces" }
+  ],
+  "features": [
+    {
+      "area": "Authoring",
+      "title": "Macros and slots",
+      "description": "Build reusable components without leaving Liquid."
+    },
+    {
+      "area": "Runtime",
+      "title": "Async rendering",
+      "description": "Actor-based internals keep rendering predictable across services and apps."
+    },
+    {
+      "area": "Operations",
+      "title": "Release evidence",
+      "description": "Docs, examples, CLI artifacts, and public hygiene gates travel with the repo."
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "The examples made the engine click in five minutes.",
+      "name": "Mira",
+      "role": "documentation engineer"
+    },
+    {
+      "text": "It is rare to see CLI tooling and language docs line up this cleanly.",
+      "name": "Jonas",
+      "role": "platform maintainer"
+    },
+    {
+      "text": "We rendered a full customer brief before lunch.",
+      "name": "Ari",
+      "role": "solutions lead"
+    }
+  ]
+}

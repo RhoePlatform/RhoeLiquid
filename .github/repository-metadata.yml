@@ -1,0 +1,40 @@
+name: RhoeLiquid
+owner: RhoePlatform
+description: Swift-native Liquid template engine, CLI, DOCX renderer, local service, and WASM target for document automation.
+homepage: https://rhoeplatform.github.io/RhoeLiquid/
+license: Apache-2.0
+visibility: private-until-public-launch
+release: 0.1.0
+primary_language: Swift
+swift_tools_version: "6.3"
+package_manager: Swift Package Manager
+cli:
+  formula: rhoe-liquid
+  executable: liquid
+  tap: RhoePlatform/rhoe
+topics:
+  - rhoeplatform
+  - liquid
+  - liquid-template-engine
+  - template-engine
+  - swift
+  - swift-package-manager
+  - swift6
+  - cli
+  - command-line-tool
+  - document-generation
+  - docx
+  - wasm
+  - webassembly
+  - markdown
+  - html
+  - latex
+  - json
+  - yaml
+  - publishing
+  - apache-2-0
+public_launch:
+  intended_visibility: public
+  source_archive: GitHub release tag v0.1.0
+  homebrew_tap: RhoePlatform/homebrew-rhoe
+  documentation: GitHub Pages DocC artifact

@@ -1,0 +1,96 @@
+{
+  "fixtureId": "artifact-workbench-template-constraint-vocabulary-v1",
+  "phase": "Phase 23",
+  "status": "contract-authority",
+  "authority": {
+    "languageSpecContract": "../RhoeLanguageSpec/part-0-foundation/10-artifact-workbench-contract-authority.md",
+    "semanticMasterFixture": "../RhoeLanguageSpec/fixtures/rhoejson/valid/artifact-workbench-board-readiness.json"
+  },
+  "templates": [
+    {
+      "templateId": "artifact-workbench.board-readiness-update",
+      "artifactGenre": "artifactWorkbench.boardReadiness",
+      "narrativeFunction": "Board-ready update with decision, evidence, risk, recommendation, and review gate.",
+      "requiredSlots": [
+        "artifact.title",
+        "artifact.context",
+        "artifact.decision",
+        "artifact.evidence",
+        "artifact.quantitativeNarrative",
+        "artifact.risk",
+        "artifact.recommendation",
+        "artifact.reviewGate"
+      ],
+      "optionalSlots": [
+        "artifact.appendix",
+        "artifact.assumptions"
+      ],
+      "lockedProperties": [
+        "artifactGenre",
+        "templateId",
+        "requiredSlots",
+        "styleProfileRef"
+      ],
+      "editableProperties": [
+        "slotText",
+        "slotOrderWithinTemplatePolicy",
+        "evidenceReferences",
+        "reviewNotes"
+      ],
+      "styleProfileRef": "artifact-workbench.boardroom",
+      "reviewGatePolicy": "semantic-review-required"
+    },
+    {
+      "templateId": "artifact-workbench.decision-summary",
+      "artifactGenre": "artifactWorkbench.boardReadiness",
+      "narrativeFunction": "Single-frame executive decision summary with quantitative narrative and review gate.",
+      "requiredSlots": [
+        "artifact.decision",
+        "artifact.quantitativeNarrative",
+        "artifact.reviewGate"
+      ],
+      "slotCardinality": {
+        "artifact.decision": "one",
+        "artifact.quantitativeNarrative": "one-or-more",
+        "artifact.reviewGate": "one"
+      },
+      "lockedProperties": [
+        "templateId",
+        "slotCardinality"
+      ],
+      "editableProperties": [
+        "artifact.decision.text",
+        "artifact.quantitativeNarrative.rows"
+      ],
+      "styleProfileRef": "artifact-workbench.boardroom",
+      "reviewGatePolicy": "governed-edit"
+    },
+    {
+      "templateId": "artifact-workbench.evidence-risk-pair",
+      "artifactGenre": "artifactWorkbench.boardReadiness",
+      "narrativeFunction": "Paired evidence and risk frame for high-stakes review.",
+      "requiredSlots": [
+        "artifact.context",
+        "artifact.evidence",
+        "artifact.risk"
+      ],
+      "slotCardinality": {
+        "artifact.context": "one",
+        "artifact.evidence": "one-or-more",
+        "artifact.risk": "one-or-more"
+      },
+      "lockedProperties": [
+        "templateId",
+        "slotCardinality"
+      ],
+      "editableProperties": [
+        "artifact.context.text",
+        "artifact.evidence.items",
+        "artifact.risk.items"
+      ],
+      "styleProfileRef": "artifact-workbench.boardroom",
+      "reviewGatePolicy": "review-visible"
+    }
+  ],
+  "downstreamConsumptionRule": "Template lanes must resolve these semantic slots before introducing target-specific visual layout logic."
+}

@@ -1,0 +1,21 @@
+# Swift
+.build/
+.swiftpm/
+DerivedData/
+Package.resolved
+*.xcodeproj
+xcuserdata/
+
+# macOS
+.DS_Store
+*.swp
+*~
+
+# Generated documentation
+docs-site/
+.docc-build/
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
