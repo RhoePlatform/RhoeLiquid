@@ -3,7 +3,7 @@
 ![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 ![Swift 6.3](https://img.shields.io/badge/Swift-6.3-orange.svg)
 ![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Linux%20%7C%20WASM-lightgrey.svg)
-![Release](https://img.shields.io/badge/release-v0.1.0--rc-green.svg)
+![Release](https://img.shields.io/badge/release-v0.1.1-green.svg)
 
 Swift-native Liquid rendering for the RhoePlatform foundation line: a high-performance template engine, DOCX templating layer, localhost HTTP service, command-line tool, WebAssembly target, and full contributor-facing documentation under Apache 2.0.
 
@@ -42,7 +42,7 @@ After the first public `v0.1.0` tag is cut, prefer the tagged dependency form:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/RhoePlatform/RhoeLiquid.git", from: "0.1.0")
+    .package(url: "https://github.com/RhoePlatform/RhoeLiquid.git", from: "0.1.1")
 ]
 ```
 

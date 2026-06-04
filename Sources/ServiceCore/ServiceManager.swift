@@ -538,7 +538,7 @@ public final class ServiceManager: ObservableObject {
         )
 
         return ServiceCapabilities(
-            serviceVersion: "0.1.0",
+            serviceVersion: "0.1.1",
             engineVersion: environmentCapabilities.version,
             schemaVersion: ServiceContractCatalog.schemaVersion,
             profile: environmentCapabilities.profile,

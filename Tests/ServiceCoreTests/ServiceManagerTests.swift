@@ -60,8 +60,8 @@ final class ServiceManagerTests: XCTestCase {
         defer { Task { await manager.stopService() } }
 
         let capabilities = try await manager.serviceCapabilities()
-        XCTAssertEqual(capabilities.serviceVersion, "0.1.0")
-        XCTAssertEqual(capabilities.engineVersion, "0.1.0")
+        XCTAssertEqual(capabilities.serviceVersion, "0.1.1")
+        XCTAssertEqual(capabilities.engineVersion, "0.1.1")
         XCTAssertEqual(capabilities.schemaVersion, "v1rc1")
         XCTAssertEqual(capabilities.profile, .extended)
         XCTAssertEqual(capabilities.sandboxPolicy.name, "service_safe")

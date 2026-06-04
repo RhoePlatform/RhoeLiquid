@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "package": "RhoeLiquid",
-  "release": "0.1.0",
+  "release": "0.1.1",
   "badge_vocabulary": [
     "Liquid standard",
     "Shopify-compatible",

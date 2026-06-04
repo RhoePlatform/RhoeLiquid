@@ -315,8 +315,8 @@ final class ServiceTypesTests: XCTestCase {
         
         // Then
         XCTAssertEqual(info.service, "RhoeLiquid Native Service")
-        XCTAssertEqual(info.version, "0.1.0")
-        XCTAssertEqual(info.engine, "RhoeLiquid 0.1.0")
+        XCTAssertEqual(info.version, "0.1.1")
+        XCTAssertEqual(info.engine, "RhoeLiquid 0.1.1")
         XCTAssertEqual(info.status, .active)
         XCTAssertEqual(info.uptime, 3600)
         XCTAssertEqual(info.requestsProcessed, 1000)

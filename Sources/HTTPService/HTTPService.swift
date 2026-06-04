@@ -103,7 +103,7 @@ public class HTTPService: ObservableObject {
             router: self.makeRouter(),
             configuration: .init(
                 address: .hostname("127.0.0.1", port: self.configuration.httpPort),
-                serverName: "RhoeLiquid-Native-Service/0.1.0"
+                serverName: "RhoeLiquid-Native-Service/0.1.1"
             ),
             onServerRunning: { channel in
                 await startup.markStarted()

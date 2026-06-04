@@ -4,7 +4,7 @@ description: Swift-native Liquid template engine, CLI, DOCX renderer, local serv
 homepage: https://rhoeplatform.github.io/RhoeLiquid/
 license: Apache-2.0
 visibility: private-until-public-launch
-release: 0.1.0
+release: 0.1.1
 primary_language: Swift
 swift_tools_version: "6.3"
 package_manager: Swift Package Manager
@@ -35,6 +35,6 @@ topics:
   - apache-2-0
 public_launch:
   intended_visibility: public
-  source_archive: GitHub release tag v0.1.0
+  source_archive: GitHub release tag v0.1.1
   homebrew_tap: RhoePlatform/homebrew-rhoe
   documentation: GitHub Pages DocC artifact

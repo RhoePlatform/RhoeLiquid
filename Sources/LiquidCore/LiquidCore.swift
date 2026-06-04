@@ -25,7 +25,7 @@ import Foundation
 ///
 /// The package is staged as the first contributor-facing Apache 2.0 foundation
 /// release for `RhoePlatform/RhoeLiquid`.
-public let liquidCoreVersion = "0.1.0"
+public let liquidCoreVersion = "0.1.1"
 
 /// Build information for debugging and diagnostics
 public struct BuildInfo: Sendable {

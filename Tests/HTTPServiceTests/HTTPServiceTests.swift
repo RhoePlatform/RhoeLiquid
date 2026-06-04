@@ -65,8 +65,8 @@ final class HTTPServiceTests: XCTestCase {
     func testCapabilitiesAndSchemaEndpoints() async throws {
         let capabilities = try await self.request(path: "/capabilities")
         XCTAssertEqual(capabilities.statusCode, 200)
-        XCTAssertEqual(capabilities.json["serviceVersion"] as? String, "0.1.0")
-        XCTAssertEqual(capabilities.json["engineVersion"] as? String, "0.1.0")
+        XCTAssertEqual(capabilities.json["serviceVersion"] as? String, "0.1.1")
+        XCTAssertEqual(capabilities.json["engineVersion"] as? String, "0.1.1")
         XCTAssertEqual(capabilities.json["schemaVersion"] as? String, "v1rc1")
         XCTAssertEqual(capabilities.json["profile"] as? String, "extended")
         XCTAssertEqual(capabilities.json["supportsAsyncJobs"] as? Bool, true)

@@ -138,8 +138,8 @@ assert_not_contains "Sources/RhoeDOCX/Documentation.docc/RhoeDOCX.md" 'RhoeBookK
 
 assert_not_contains "api/index.html" "$legacy_alias"
 assert_contains "api/index.html" 'Apache 2.0 License'
-assert_contains "api/openapi.yaml" 'version: 0.1.0'
-assert_contains "Sources/LiquidCore/LiquidCore.swift" 'public let liquidCoreVersion = "0.1.0"'
+assert_contains "api/openapi.yaml" 'version: 0.1.1'
+assert_contains "Sources/LiquidCore/LiquidCore.swift" 'public let liquidCoreVersion = "0.1.1"'
 assert_not_contains "Sources/LiquidCore/LiquidCore.swift" 'public let liquidCoreVersion = "1.0.0"'
 
 swift package dump-package > /dev/null

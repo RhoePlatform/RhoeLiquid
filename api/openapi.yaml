@@ -1,11 +1,11 @@
 openapi: 3.1.0
 info:
   title: RhoeLiquid Native Service API
-  version: 0.1.0
+  version: 0.1.1
   description: |
     Localhost HTTP API for the active RhoeLiquid native service surface.
     `/schema` is the canonical machine-readable contract and this OpenAPI file
-    is generated from the same v0.1.0 public release candidate contract catalog.
+    is generated from the same v0.1.1 public release contract catalog.
 servers:
   - url: http://localhost:13480
     description: Default local service endpoint

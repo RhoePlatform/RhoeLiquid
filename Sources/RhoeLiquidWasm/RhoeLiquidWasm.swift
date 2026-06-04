@@ -53,7 +53,7 @@ import LiquidParser
 public struct RhoeLiquidWasm: Sendable {
 
     /// Version string for the WASM target (tracks the main engine version).
-    public static let version = "0.1.0-wasm"
+    public static let version = "0.1.1-wasm"
 
     // MARK: - Render
 

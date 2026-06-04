@@ -18,7 +18,7 @@ import Foundation
 public enum RhoeDOCX {
     
     /// Current module version string.
-    public static let version = "0.1.0"
+    public static let version = "0.1.1"
     
     /// Performs a quick structural validation on a DOCX file at a URL.
     public static func isValidDOCX(at url: URL) async -> Bool {

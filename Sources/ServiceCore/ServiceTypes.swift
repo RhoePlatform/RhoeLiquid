@@ -495,8 +495,8 @@ public enum LogLevel: String, Sendable, Codable, CaseIterable {
 /// ```json
 /// {
 ///   "service": "RhoeLiquid Native Service",
-///   "version": "0.1.0",
-///   "engine": "RhoeLiquid 0.1.0",
+///   "version": "0.1.1",
+///   "engine": "RhoeLiquid 0.1.1",
 ///   "status": "active",
 ///   "uptime": 3600,
 ///   "requestsProcessed": 1523,
@@ -521,8 +521,8 @@ public struct ServiceInfo: Sendable, Codable {
     
     public init(
         service: String = "RhoeLiquid Native Service",
-        version: String = "0.1.0",
-        engine: String = "RhoeLiquid 0.1.0",
+        version: String = "0.1.1",
+        engine: String = "RhoeLiquid 0.1.1",
         status: ServiceStatus,
         uptime: TimeInterval,
         requestsProcessed: Int,

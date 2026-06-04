@@ -1018,7 +1018,7 @@ private extension LiquidEngine {
         let line = metadata.isEmpty
             ? "[RhoeLiquid] \(message): \(error.localizedDescription)\n"
             : "[RhoeLiquid] \(message): \(error.localizedDescription) (\(metadata))\n"
-        fputs(line, stderr)
+        FileHandle.standardError.write(Data(line.utf8))
     }
 }
 

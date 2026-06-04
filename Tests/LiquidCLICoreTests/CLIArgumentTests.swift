@@ -60,7 +60,7 @@ struct CLIArgumentTests {
 
     @Test("CLI metadata version follows the engine release version")
     func cliVersionFollowsEngineVersion() {
-        #expect(LiquidCLIMetadata.version == "0.1.0")
+        #expect(LiquidCLIMetadata.version == "0.1.1")
     }
 
     private func expectThrows(_ operation: () throws -> Void, sourceLocation: SourceLocation = #_sourceLocation) {

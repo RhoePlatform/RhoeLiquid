@@ -29,7 +29,7 @@ public enum ServiceContractCatalog {
     }
 
     public static func openAPIYAML(
-        serviceVersion: String = "0.1.0",
+        serviceVersion: String = "0.1.1",
         serverURL: String = "http://localhost:13480"
     ) -> String {
         var lines: [String] = [
@@ -40,7 +40,7 @@ public enum ServiceContractCatalog {
             "  description: |",
             "    Localhost HTTP API for the active RhoeLiquid native service surface.",
             "    `/schema` is the canonical machine-readable contract and this OpenAPI file",
-            "    is generated from the same v0.1.0 public release candidate contract catalog.",
+            "    is generated from the same v0.1.1 public release contract catalog.",
             "servers:",
             "  - url: \(serverURL)",
             "    description: Default local service endpoint",
