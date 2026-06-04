@@ -23,8 +23,11 @@ jobs:
       - name: Build Service Product
         run: swift build -c release --product RhoeLiquidService
 
+      - name: Package DocC Pages Artifact
+        run: tar -czf rhoeliquid-docc-pages.tar.gz -C .build docc-pages
+
       - name: Upload DocC Pages Artifact
         uses: actions/upload-artifact@v4
         with:
           name: rhoeliquid-docc-pages
-          path: .build/docc-pages
+          path: rhoeliquid-docc-pages.tar.gz
